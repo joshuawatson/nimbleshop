@@ -2,7 +2,7 @@ module Nimbleshop
   class Version
     @major = 0
     @minor = 0
-    @tiny  = 10
+    @tiny  = 11
     @build = nil
 
     class << self
@@ -14,5 +14,5 @@ module Nimbleshop
     end
   end
 
-  RailsVersion = '= 3.2.8'
+  RailsVersion = '= 3.2.9'
 end
