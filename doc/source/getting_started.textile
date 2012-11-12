@@ -9,7 +9,7 @@ h3. nimbleShop only supports ruby 1.9.2+
 In order to get started with nimbleShop you need to have
 
 * ruby 1.9.2+
-* rails 3.2.6
+* rails 3.2.9
 
 h3. Building myshop using nimbleShop
 
