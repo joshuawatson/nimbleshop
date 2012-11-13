@@ -25,7 +25,7 @@ class CustomFieldAnswerFieldNumberTest < ActiveSupport::TestCase
 
   test "when custom_field_id set during build" do
     answer = CustomFieldAnswer.new(value: 234, custom_field_id: create(:number_custom_field).id)
-    answer.custom_field_id = create(:number_custom_field)
+    answer.custom_field_id = create(:number_custom_field).id
     assert_equal 234, answer.number_value
   end
 
