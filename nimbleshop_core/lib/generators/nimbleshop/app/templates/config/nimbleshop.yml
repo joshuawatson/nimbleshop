@@ -24,9 +24,11 @@ common:
     secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
     bucket_name:       <%= ENV['S3_BUCKET_NAME'] %>
 
-  mailtrapio:
+  mailtrap:
     username: <%= ENV['MAILTRAPIO_USERNAME'] || 'nimbleshop' %>
     password: <%= ENV['MAILTRAPIO_PASSWORD'] || 'f42c2934fbc2e229' %>
+    address:  mailtrap.railsware.com
+    port:     2525
 
 development:
   use_s3: false
