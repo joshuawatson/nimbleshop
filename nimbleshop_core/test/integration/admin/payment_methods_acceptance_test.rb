@@ -22,7 +22,7 @@ class PaymentMethodsControllerTest < ActionController::TestCase
 
     put :disable, id: payment_method.permalink
 
-    assert_redirected_to action: :index
+    assert_response :redirect
     refute payment_method.reload.enabled
   end
 
@@ -31,7 +31,7 @@ class PaymentMethodsControllerTest < ActionController::TestCase
 
     put :enable, id: payment_method.permalink
 
-    assert_redirected_to action: :index
+    assert_response :redirect
     assert payment_method.reload.enabled
   end
 end

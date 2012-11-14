@@ -1,6 +1,7 @@
 class Admin::PaymentMethodsController < AdminController
 
   before_filter :load_payment_methods
+  before_filter :load_payment_method, only: [:enable, :disable]
 
   def index
     @disabled_payment_methods = PaymentMethod.disabled.ascending
