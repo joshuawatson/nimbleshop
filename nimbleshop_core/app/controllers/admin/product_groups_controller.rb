@@ -38,13 +38,11 @@ class Admin::ProductGroupsController < AdminController
   def update
     respond_to do |format|
       format.html do
-
-        if @product_group.update_attributes(post_params[:product_group])
+        if @product_group.update_attributes post_params[:product_group]
           redirect_to admin_product_groups_path, notice: t(:successfully_updated)
         else
           render action: 'edit'
         end
-
       end
     end
   end

@@ -14,7 +14,7 @@ class Admin::CustomFieldsController < AdminController
   end
 
   def update
-    if @custom_field.update_attributes(params[:custom_field])
+    if @custom_field.update_attributes params[:custom_field]
       redirect_to admin_custom_fields_path, notice: t(:successfully_updated)
     else
       respond_with @custom_field
@@ -27,7 +27,7 @@ class Admin::CustomFieldsController < AdminController
   end
 
   def create
-    @custom_field  = CustomField.new(params[:custom_field])
+    @custom_field  = CustomField.new params[:custom_field]
     if @custom_field.save
       redirect_to admin_custom_fields_url, notice: t(:successfully_added)
     else
@@ -50,7 +50,7 @@ class Admin::CustomFieldsController < AdminController
   private
 
   def load_custom_field
-    @custom_field = CustomField.find(params[:id])
+    @custom_field = CustomField.find params[:id]
   end
 
 end

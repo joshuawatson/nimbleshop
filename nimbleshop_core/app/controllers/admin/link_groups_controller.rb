@@ -21,15 +21,13 @@ class Admin::LinkGroupsController < AdminController
   def create
     respond_to do |format|
       format.html do
-
-        @link_group = LinkGroup.new(post_params[:link_group])
+        @link_group = LinkGroup.new post_params[:link_group]
 
         if @link_group.save
           redirect_to admin_link_groups_url, notice: t(:successfully_added)
         else
           render action: 'new'
         end
-
       end
     end
   end
@@ -37,13 +35,11 @@ class Admin::LinkGroupsController < AdminController
   def update
     respond_to do |format|
       format.html do
-
-        if @link_group.update_attributes(post_params[:link_group])
+        if @link_group.update_attributes post_params[:link_group]
           redirect_to admin_link_groups_path, notice: t(:successfully_updated)
         else
           rener action: 'edit'
         end
-
       end
     end
   end
@@ -51,10 +47,8 @@ class Admin::LinkGroupsController < AdminController
   def destroy
     respond_to do |format|
       format.html do
-
         @link_group.destroy
         redirect_to admin_link_groups_url, notice: t(:successfully_deleted)
-
       end
     end
   end
@@ -70,7 +64,7 @@ class Admin::LinkGroupsController < AdminController
   end
 
   def load_link_group
-    @link_group = LinkGroup.find_by_permalink!(params[:id])
+    @link_group = LinkGroup.find_by_permalink! params[:id]
   end
 
 end
