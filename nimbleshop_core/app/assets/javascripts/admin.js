@@ -19,7 +19,7 @@
 //= require admin/product-group-condition
 //= require admin/shipit
 //= require admin/shipping_methods/edit
-//= require admin/products/edit
+//= require_tree ./admin/products
 //= require admin/utils/fadeout_success
 //= require autoresize
 
