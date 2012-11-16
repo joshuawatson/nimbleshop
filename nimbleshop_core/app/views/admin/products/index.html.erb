@@ -21,6 +21,17 @@
         </td>
         <td><%= link_to product.name, edit_admin_product_path(product) %></td>
         <td>
+          <% if product.featured %>
+            <%= link_to(unfeature_admin_product_path(product), {method: :put, 'data-behavior' => 'manage-featured'}) do %>
+              <i class="icon-star"></i>
+            <% end %>
+          <% else %>
+            <%= link_to(feature_admin_product_path(product), {method: :put}) do %>
+              <i class="icon-star-empty"></i>
+            <% end %>
+          <% end %>
+
+          |
           <%= link_to 'Edit', edit_admin_product_path(product), title: 'Edit' %>
           |
           <%= link_to [:admin, product], data: { confirm: t(:delete_confirmation_for_product) }, method: 'delete', title: 'Delete', class: 'delete' do %>

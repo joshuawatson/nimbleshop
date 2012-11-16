@@ -1,6 +1,6 @@
 class Admin::ProductsController < AdminController
 
-  before_filter :load_product!, only: [:edit, :update, :destroy ]
+  before_filter :load_product!, only: [:edit, :update, :destroy, :feature, :unfeature ]
 
   respond_to :html
 
@@ -52,6 +52,16 @@ class Admin::ProductsController < AdminController
   def destroy
     @product.destroy
     redirect_to admin_products_url, notice: t(:successfully_deleted)
+  end
+
+  def feature
+    @product.update_column :featured, true
+    redirect_to admin_products_url, notice: t(:successfully_updated)
+  end
+
+  def unfeature
+    @product.update_column :featured, false
+    redirect_to admin_products_url, notice: t(:successfully_updated)
   end
 
   private
