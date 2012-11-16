@@ -7,7 +7,7 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal 'hidden', Product.new(status: 'hidden').status
   end
 
-  test 'should create a default picture record' do
+  test 'a default picture is created when product is created' do
     assert_equal 1, create(:product).pictures.size
   end
 
@@ -48,12 +48,12 @@ class ProductFindOrBuildForField < ActiveSupport::TestCase
     @answer  = @product.custom_field_answers.create(custom_field: @field1, value: 23)
   end
 
-  test 'needs to build new answer' do
+  test 'building a new answer' do
     @answer = @product.find_or_build_answer_for_field(@field2)
     assert_equal nil, @answer.id
   end
 
-  test 'needs to return exisitng answer' do
+  test 'returns an exisitng answer' do
     assert_equal @answer, @product.find_or_build_answer_for_field(@field1)
   end
 

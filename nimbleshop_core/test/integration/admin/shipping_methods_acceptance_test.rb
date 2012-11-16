@@ -6,7 +6,7 @@ class ShippingMethodAcceptanceTest < ActionDispatch::IntegrationTest
     create(:country_shipping_zone, country_code: code)
   end
 
-  test "add new shipping method to country" do
+  test "adding a new shipping method to country" do
     bef = ShippingZone.count
     shipping_zone = create_shipping_zone("US")
     visit new_admin_shipping_zone_shipping_method_path(shipping_zone)
@@ -17,20 +17,20 @@ class ShippingMethodAcceptanceTest < ActionDispatch::IntegrationTest
     fill_in "shipping_method_base_price", with: "10"
     click_button('Submit')
 
-    skip "builda fails but local tests pass" do
+    skip "travis ci fails but local tests pass" do
       assert_sanitized_equal 'Ground Shipping', find('table tr td').text
       assert_equal 58, ShippingZone.count - bef
     end
   end
 
-  test "edit shipping method to country" do
+  test "editing shipping method to country" do
     shipping_zone = create_shipping_zone("US")
     shipping_method = create(:country_shipping_method, shipping_zone: shipping_zone)
     visit edit_admin_shipping_zone_shipping_method_path(shipping_method.shipping_zone, shipping_method)
     fill_in "shipping_method_maximum_order_amount", with: "40"
     click_button('Submit')
 
-    skip "builda fails but local tests pass" do
+    skip "travis ci fails but local tests pass" do
       assert page.has_content?('Successfully updated')
     end
   end

@@ -6,7 +6,7 @@ class CountryShippingZoneTest < ActiveRecord::TestCase
     assert_equal "United States", create(:country_shipping_zone).name
   end
 
-  test "should create all regions for canada" do
+  test "creates all regions for canada" do
     regions = Carmen::Country.coded('CA').subregions.length
 
     assert_difference 'RegionalShippingZone.count', regions do

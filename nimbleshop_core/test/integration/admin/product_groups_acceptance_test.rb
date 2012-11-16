@@ -83,7 +83,3 @@ class ProductGroupsAcceptanceTest < ActionDispatch::IntegrationTest
   end
 
 end
-
-
-
-

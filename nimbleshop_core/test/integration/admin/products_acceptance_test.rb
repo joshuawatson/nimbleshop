@@ -13,7 +13,7 @@ class ProductsAcceptanceTest < ActionDispatch::IntegrationTest
     fill_in 'Price', with: '45.99'
   end
 
-  test "should create a new product without image" do
+  test "creating a new product without image" do
     click_button 'Submit'
     assert_equal 0, Product.last.pictures.size
     assert_equal 0, page.all('ul.product_pictures li').count
@@ -21,7 +21,7 @@ class ProductsAcceptanceTest < ActionDispatch::IntegrationTest
     assert page.has_content?('the very wicked name for product')
   end
 
-  test "edit a product" do
+  test "editing a product" do
     create(:product, name: 'test')
     visit admin_path
     click_link 'Products'
@@ -79,7 +79,7 @@ class ProductsAcceptanceTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Price is not a number")
   end
 
-  test "should delete a product" do
+  test "deletion a product" do
     create(:product, name: 'ipad99')
     visit admin_path
     click_link 'Products'

@@ -2,7 +2,7 @@ require "test_helper"
 
 class PaymentMethodsAcceptanceTest < ActionDispatch::IntegrationTest
 
-  test "payment_methods when no payment method is configured" do
+  test "page should come up fine when no payment method is configured" do
     PaymentMethod.delete_all
     visit admin_path
     click_link 'Payment methods'
@@ -16,7 +16,7 @@ class PaymentMethodsControllerTest < ActionController::TestCase
 
   tests Admin::PaymentMethodsController
 
-  test "disable a payment method" do
+  test "disabling a payment method" do
     payment_method = PaymentMethod.first
     assert payment_method.enabled
 
@@ -26,7 +26,7 @@ class PaymentMethodsControllerTest < ActionController::TestCase
     refute payment_method.reload.enabled
   end
 
-  test "enable a payment method" do
+  test "enabling a payment method" do
     payment_method = PaymentMethod.first.tap {|r| r.update_attributes! enabled: false }
 
     put :enable, id: payment_method.permalink

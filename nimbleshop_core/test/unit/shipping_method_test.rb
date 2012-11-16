@@ -15,7 +15,7 @@ class ShippingMethodTest < ActiveSupport::TestCase
     refute s.valid?
   end
 
-  test 'validations round2' do
+  test 'order amount must be greater than zero' do
     s = build(:country_shipping_method, minimum_order_amount:0, higher_price_limit: 0)
     s.valid?
     assert_equal 'Maximum order amount must be greater than 0', s.errors.full_messages.first

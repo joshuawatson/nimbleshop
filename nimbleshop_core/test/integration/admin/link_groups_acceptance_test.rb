@@ -7,7 +7,7 @@ class LinkGroupsAcceptanceTest < ActionDispatch::IntegrationTest
     @link_group    = create :link_group,    name: "Branded Shoes"
   end
 
-  test "add a new link group" do
+  test "adding a new link group" do
     visit admin_path
     click_link 'Link groups'
     click_link 'add_new_link_group'
@@ -17,7 +17,7 @@ class LinkGroupsAcceptanceTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Popular products')
   end
 
-  test "add new link" do
+  test "adding a new link" do
     visit admin_path
     click_link 'Link groups'
     refute page.has_content?('Nike Shoes')
@@ -27,7 +27,7 @@ class LinkGroupsAcceptanceTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Nike Shoes')
   end
 
-  test "delete link group" do
+  test "deleting link group" do
     nav = @link_group.navigations.create(product_group: @product_group)
     Capybara.current_driver =  :selenium
     visit admin_link_groups_path

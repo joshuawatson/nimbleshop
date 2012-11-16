@@ -6,7 +6,7 @@ class ShopsAcceptanceTest < ActionDispatch::IntegrationTest
     create(:shop)
   end
 
-  test "edit shop - good path" do
+  test "editing shop" do
     visit admin_path
     click_link 'Shop configuration'
     assert page.has_content?('Shop configuration')
@@ -22,7 +22,7 @@ class ShopsAcceptanceTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Shop was successfully updated')
   end
 
-  test "edit shop - wrong path" do
+  test "editing shop with validtion error" do
     visit admin_path
     click_link 'Shop configuration'
     fill_in 'Name', with: ''
