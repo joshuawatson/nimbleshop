@@ -3,7 +3,7 @@ window.NimbleshopSimply = window.NimbleshopSimply || {}
 NimbleshopSimply.toggleBillingAddress = class ToggleBillingAddress
   constructor: ->
     @handleToggleCheckBox()
-    $("#order_shipping_address_attributes_use_for_billing").on 'click', =>
+    $(document).on 'click', "#order_shipping_address_attributes_use_for_billing", =>
       @handleToggleCheckBox()
 
   handleToggleCheckBox: ->
