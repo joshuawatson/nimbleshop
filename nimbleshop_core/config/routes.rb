@@ -19,12 +19,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :products, except: [:show] do
-      member do
-        put :feature
-        put :unfeature
-      end
-    end
+    resources :products,        except: [:show]
     resources :product_groups
     resources :custom_fields
 

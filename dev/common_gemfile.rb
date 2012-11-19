@@ -15,7 +15,7 @@ gem 'debugger'
 group :test do
   gem 'guard-minitest'
   gem 'guard', '= 1.0.3'
-  gem 'capybara', '= 1.1.3'
+  gem 'capybara'
   gem 'selenium-webdriver', '~> 2.21'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
