@@ -1,5 +1,5 @@
-module NimbleshopSimply
-  class ProductsController < SimplyController
+module NimbleshopTingly
+  class ProductsController < TinglyController
 
     before_filter :no_page_title, only: [:all_prictures, :index]
 

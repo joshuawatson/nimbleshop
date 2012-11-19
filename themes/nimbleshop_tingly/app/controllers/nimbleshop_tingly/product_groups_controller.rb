@@ -1,5 +1,5 @@
-module NimbleshopSimply
-  class ProductGroupsController < SimplyController
+module NimbleshopTingly
+  class ProductGroupsController < TinglyController
 
     before_filter :no_page_title,   only: [:show]
 

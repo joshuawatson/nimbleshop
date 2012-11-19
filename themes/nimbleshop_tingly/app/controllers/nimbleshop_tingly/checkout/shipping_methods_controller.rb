@@ -1,5 +1,5 @@
-module NimbleshopSimply
-  class Checkout::ShippingMethodsController < SimplyController
+module NimbleshopTingly
+  class Checkout::ShippingMethodsController < TinglyController
 
     before_filter :verify_current_order, :load_shipping_methods
 

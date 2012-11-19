@@ -1,5 +1,5 @@
-module NimbleshopSimply
-  class PagesController < SimplyController
+module NimbleshopTingly
+  class PagesController < TinglyController
 
     def about_us
       render

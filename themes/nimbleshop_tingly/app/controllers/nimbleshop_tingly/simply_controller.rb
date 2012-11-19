@@ -1,8 +1,8 @@
-class NimbleshopSimply::SimplyController < ApplicationController
+class NimbleshopTingly::TinglyController < ApplicationController
 
-  layout 'simply'
+  layout 'tingly'
 
-  helper 'nimbleshop_simply/simply'
+  helper 'nimbleshop_tingly/tingly'
 
   helper_method :current_order, :current_shop
 

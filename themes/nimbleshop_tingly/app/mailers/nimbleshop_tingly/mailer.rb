@@ -1,9 +1,9 @@
-module NimbleshopSimply
+module NimbleshopTingly
   class Mailer < ActionMailer::Base
 
     helper :application
 
-    layout 'nimbleshop_simply/mailer'
+    layout 'nimbleshop_tingly/mailer'
 
     default from: lambda { Shop.current.from_email }
 

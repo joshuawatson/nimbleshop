@@ -3,13 +3,13 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *
- *= require nimbleshop_simply/themed_bootstrap_and_overrides
- *= require nimbleshop_simply/override_bootstrap
+ *= require nimbleshop_tingly/themed_bootstrap_and_overrides
+ *= require nimbleshop_tingly/override_bootstrap
  *= require fancybox
- *= require nimbleshop_simply/custom
- *= require nimbleshop_simply/cart_button
- *= require nimbleshop_simply/cart
- *= require nimbleshop_simply/creditcard
+ *= require nimbleshop_tingly/custom
+ *= require nimbleshop_tingly/cart_button
+ *= require nimbleshop_tingly/cart
+ *= require nimbleshop_tingly/creditcard
  *= require_self
 */
 

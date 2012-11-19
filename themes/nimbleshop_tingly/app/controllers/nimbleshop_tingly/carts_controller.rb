@@ -1,5 +1,5 @@
-module NimbleshopSimply
-  class CartsController < SimplyController
+module NimbleshopTingly
+  class CartsController < TinglyController
 
     respond_to :html
 

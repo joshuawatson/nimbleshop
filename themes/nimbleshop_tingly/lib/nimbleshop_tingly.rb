@@ -1,2 +1,2 @@
-require "nimbleshop_simply/engine"
+require "nimbleshop_tingly/engine"
 require "fancybox-rails"

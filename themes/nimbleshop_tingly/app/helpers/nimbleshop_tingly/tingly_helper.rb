@@ -1,5 +1,5 @@
-module NimbleshopSimply
-  module SimplyHelper
+module NimbleshopTingly
+  module TinglyHelper
 
     # returns nil if the product does not have a main picture
     def product_main_picture(product, version = :medium_plus)
