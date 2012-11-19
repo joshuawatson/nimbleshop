@@ -31,13 +31,13 @@ module Nimbleshop
     def mount
       if (routes_file = destination_path.join('config', 'routes.rb')).file?
         mount = %Q{
-          mount NimbleshopSimply::Engine,          :at => '/'
+          mount NimbleshopSimply::Engine,          at: '/'
 
-          mount NimbleshopAuthorizedotnet::Engine, :at => '/nimbleshop_authorizedotnet'
-          mount NimbleshopPaypalwp::Engine,        :at => '/nimbleshop_paypalwp'
-          mount NimbleshopSplitable::Engine,       :at => '/nimbleshop_splitable'
-          mount NimbleshopCod::Engine,             :at => '/nimbleshop_cod'
-          mount NimbleshopStripe::Engine,          :at => '/nimbleshop_stripe'
+          mount NimbleshopAuthorizedotnet::Engine, at: '/nimbleshop_authorizedotnet'
+          mount NimbleshopPaypalwp::Engine,        at: '/nimbleshop_paypalwp'
+          mount NimbleshopSplitable::Engine,       at: '/nimbleshop_splitable'
+          mount NimbleshopCod::Engine,             at: '/nimbleshop_cod'
+          mount NimbleshopStripe::Engine,          at: '/nimbleshop_stripe'
         }
 
         inject_into_file 'config/routes.rb', mount, :after => "Application.routes.draw do\n"
