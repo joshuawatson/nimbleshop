@@ -24,6 +24,16 @@ cd nimbleshop_core
 bundle exec ruby -I test  test/unit/product_test.rb
 </shell>
 
+h3. save_and_open_page
+
+In acceptance test if you need to look at the contents of the page then you can do so by having
+
+<shell>
+fill_in 'Price', with: 'wrong price'
+click_button 'Submit'
+save_and_open_page
+</shell>
+
 h3. Installing firefox for selenium tests
 
 
