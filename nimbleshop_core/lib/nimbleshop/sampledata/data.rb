@@ -161,7 +161,8 @@ module Sampledata
     def load_mangoes
       print '.'
       desc = %q{
-        The mango is the national fruit of India and Pakistan. It is also the national fruit in the Philippines. The mango tree is the national tree of Bangladesh.
+        The mango is the national fruit of India and Pakistan. It is also the national fruit in the Philippines.
+        The mango tree is the national tree of Bangladesh.
 
         Mango leaves are used to decorate archways and doors in Indian houses and during weddings and celebrations.
       }
@@ -188,11 +189,17 @@ module Sampledata
     def load_bangles
       print '.'
       desc = %q{
-        Bangles are part of traditional Indian jewelry. They are usually worn in pairs by women, one or more on each arm. Most Indian women prefer wearing either gold or glass bangles or combination of both. Inexpensive bangles made from plastic are slowly replacing those made by glass, but the ones made of glass are still preferred at traditional occasions such as marriages and on festivals.
+        Bangles are part of traditional Indian jewelry. They are usually worn in pairs by women, one or more on each arm.
+        Most Indian women prefer wearing either gold or glass bangles or combination of both. Inexpensive bangles made from
+        plastic are slowly replacing those made by glass, but the ones made of glass are still preferred at traditional occasions
+        such as marriages and on festivals.
 
-        The designs range from simple to intricate handmade designs, often studded with precious and semi-precious stones such as diamonds, gems and pearls. Sets of expensive bangles made of gold and silver make a jingling sound. The imitation jewelry, tend to make a tinny sound when jingled.
+        The designs range from simple to intricate handmade designs, often studded with precious and semi-precious stones such as
+        diamonds, gems and pearls. Sets of expensive bangles made of gold and silver make a jingling sound. The imitation jewelry,
+        tend to make a tinny sound when jingled.
 
-        It is tradition that the bride will try to wear as many small glass bangles as possible at her wedding and the honeymoon will end when the last bangle breaks.
+        It is tradition that the bride will try to wear as many small glass bangles as possible at her wedding and the honeymoon will
+        end when the last bangle breaks.
       }
       product = Product.create!( title: "Handmade bangles", price: 11, description: desc)
       handle_pictures_for_product(product, "product6")
@@ -204,7 +211,9 @@ module Sampledata
       desc = %q{
         The shoes that you see in picture are called 'jutti' in India.
 
-        They are usually made of fine leather and are delicately embroidered with threads or beads. Juttis are slip-on in style and are characterized by rising high in the back and covering the toes with a round heavily-embroidered upper shoe and leaving the top of the foot nearly bare.
+        They are usually made of fine leather and are delicately embroidered with threads or beads. Juttis are slip-on
+        in style and are characterized by rising high in the back and covering the toes with a round heavily-embroidered
+        upper shoe and leaving the top of the foot nearly bare.
       }
       product = Product.create!( title: "Colorful shoes", price: 191, description: desc)
       handle_pictures_for_product(product, "product7")
@@ -216,7 +225,8 @@ module Sampledata
       desc = %q{
         Swiss label, TAG Heuer's Aquaracer 500M Ceramic watch embodies perfection, style and clean look.
 
-        It has ceramic bezel and has the case is 41mm, significantly smaller than the 43mm out-going model. The case has been given softer curvier lines to
+        It has ceramic bezel and has the case is 41mm, significantly smaller than the 43mm out-going model. The case has been given
+        softer curvier lines to
         create a more classic look.
 
         Following models are available:
