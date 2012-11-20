@@ -21,7 +21,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'launchy'
 
-  gem 'mocha', require: false
+  gem 'mocha', require: 'mocha/setup'
 
   # for fake data in testing
   gem 'faker'
@@ -30,5 +30,5 @@ group :test do
   gem 'vcr'
 
   # vcr uses webmock
-  gem 'webmock'
+  gem 'webmock', '~> 1.8.0'
 end
