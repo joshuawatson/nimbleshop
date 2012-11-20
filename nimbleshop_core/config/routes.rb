@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root to: 'nimbleshop_simply/products#index'
-
   get '/admin',           to: 'admin/main#index'
 
   # Ideally it should only be included in development mode
