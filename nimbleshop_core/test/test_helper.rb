@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.setup(:test)
 
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../myshop/config/environment.rb",  __FILE__)
 require 'rails/test_help'
@@ -13,6 +14,8 @@ require 'factory_girl'
 Dir["#{File.dirname(__FILE__)}/factories/**"].each { |f| require File.expand_path(f) }
 
 require 'active_record/fixtures'
+
+require "mocha/setup"
 
 DatabaseCleaner.strategy = :truncation
 Capybara.default_wait_time  = 5
