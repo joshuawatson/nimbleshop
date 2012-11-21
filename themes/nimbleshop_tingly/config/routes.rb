@@ -22,3 +22,7 @@ NimbleshopTingly::Engine.routes.draw do
   end
 
 end
+
+Rails.application.routes.draw do
+  root to: 'nimbleshop_tingly/products#index'
+end
