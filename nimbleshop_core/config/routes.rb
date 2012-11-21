@@ -54,9 +54,8 @@ Rails.application.routes.draw do
   end
 
   mount NimbleshopAuthorizedotnet::Engine, at: '/nimbleshop_authorizedotnet'
+  mount NimbleshopStripe::Engine,          at: '/nimbleshop_stripe'
   mount NimbleshopPaypalwp::Engine,        at: '/nimbleshop_paypalwp'
   mount NimbleshopSplitable::Engine,       at: '/nimbleshop_splitable'
   mount NimbleshopCod::Engine,             at: '/nimbleshop_cod'
-  mount NimbleshopSimply::Engine,          at: '/'
-
 end
