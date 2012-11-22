@@ -21,7 +21,7 @@ group :test do
   gem 'factory_girl_rails', '~> 4.1.0'
   gem 'launchy'
 
-  gem 'mocha', require: false
+  gem 'mocha', '~> 0.12.1', require: false
 
   # for fake data in testing
   gem 'faker', '~> 1.1.2'
