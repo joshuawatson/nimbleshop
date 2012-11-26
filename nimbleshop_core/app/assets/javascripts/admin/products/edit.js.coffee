@@ -1,12 +1,5 @@
 window.Nimbleshop = window.Nimbleshop || {}
 
-$ ->
-  # work around the nested form ugliness
-  $("form input:file").parents('.fields').hide()
-
-
-
-
 Nimbleshop.managePicture = class ManagePicture
   constructor: ->
     @deletePicture()
@@ -26,6 +19,7 @@ Nimbleshop.managePicture = class ManagePicture
 
       $("#product_pictures_order").attr "value", $.toJSON(order)
     ).disableSelection()
-
 $ ->
+  # work around the nested form ugliness
+  $("form input:file").parents('.fields').hide()
   new Nimbleshop.managePicture
