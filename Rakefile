@@ -4,7 +4,7 @@ end
 
 engines = %w(nimbleshop_core)
 payment_methods = %w(nimbleshop_authorizedotnet nimbleshop_splitable nimbleshop_paypalwp nimbleshop_stripe)
-themes = %w(nimbleshop_simply)
+themes = %w(nimbleshop_simply nimbleshop_tingly)
 
 desc 'Run all tests by default'
 task :default => %w(test)

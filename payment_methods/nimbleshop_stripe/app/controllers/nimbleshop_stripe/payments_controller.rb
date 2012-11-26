@@ -16,7 +16,7 @@ module NimbleshopStripe
       default_action = Shop.current.default_creditcard_action
 
       if processor.send(default_action, token: token)
-        url = nimbleshop_simply.order_path order
+        url = main_theme.order_path order
         @output = "window.location='#{url}'"
       else
         error = processor.errors.first
