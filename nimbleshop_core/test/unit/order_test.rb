@@ -49,7 +49,7 @@ class OrderTest < ActiveSupport::TestCase
     @order.add(@product1)
     @order.remove(@product1)
     assert @order.reload.line_items.empty?
-    assert_equal 0.0, @order.reload.line_items_total.to_f
+    assert_equal 0.0, @order.reload.line_items_total
   end
 
   test "#update_quantity" do
@@ -62,7 +62,7 @@ class OrderTest < ActiveSupport::TestCase
     @order.add(@product1)
     @order.add(@product2)
     @order.update_quantity({@product1.id => 3})
-    assert_equal 60.0, @order.line_items_total.to_f
+    assert_equal 60.0, @order.line_items_total
   end
 
   test "#available_shipping_methods" do

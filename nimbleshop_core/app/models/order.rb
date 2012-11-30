@@ -96,9 +96,11 @@ class Order < ActiveRecord::Base
 
   # Returns the total price of all line items in float.
   def line_items_total
-    line_items.reduce(BigDecimal('0')) do |sum, line_item|
-      sum + BigDecimal(line_item.total.to_s)
-    end.round(2).to_f
+    line_items.
+      map(&:total_as_big_decimal).
+      reduce(BigDecimal('0'), :+).
+      round(2).
+      to_f
   end
 
   def total_amount
