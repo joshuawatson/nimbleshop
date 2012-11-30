@@ -37,6 +37,10 @@ class LineItem < ActiveRecord::Base
     price * quantity
   end
 
+  def total_as_big_decimal
+    BigDecimal(total.to_s)
+  end
+
   def update_quantity(count)
     count.to_i.zero? ?  destroy : update_attributes(quantity: count)
   end

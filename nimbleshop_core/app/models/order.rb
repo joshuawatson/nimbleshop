@@ -78,8 +78,8 @@ class Order < ActiveRecord::Base
     line_items.count
   end
 
-  def add(product)
-    line_item_for(product.id) || line_items.create(product_id: product.id, quantity: 1)
+  def add(product, variant = nil)
+    line_item_for(product.id) || line_items.create(product: product, quantity: 1, variant: variant)
   end
 
   def update_quantity(data = {})
@@ -97,7 +97,7 @@ class Order < ActiveRecord::Base
   # Returns the total price of all line items in float.
   def line_items_total
     line_items.reduce(BigDecimal('0')) do |sum, line_item|
-      sum + BigDecimal(line_item.price.to_s)
+      sum + BigDecimal(line_item.total.to_s)
     end.round(2).to_f
   end
 
