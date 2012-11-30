@@ -1,11 +1,9 @@
-<% presenter = VariantPresenter.new(product.variant_labels, product.variants.map(&:to_hash)) %>
-
 <div class="sublvl" data-behavior="product-variants-box" style="display: block;">
   <%= link_to "+ Add Column", '#', class: 'silver', data: { behaviour: "product-variants-add-column" } %>
   <table class="variant reset alist" data-behavior="product-variants-table">
     <thead>
       <tr class="silver">
-        <% presenter.labels.each do | _ | %>
+        <% variant_labels(product.variant_labels).each do | _ | %>
           <th class="custom">
             <%= link_to "Delete", '#', title: 'Delete', data: { behaviour: "product-variants-delete-column" } %>
           </th>
@@ -15,22 +13,37 @@
         <th>&nbsp;</th>
       </tr>
       <tr class="columns" data-behavior="product-variants-label-row">
-        <%= raw presenter.render_labels(self) %>
+        <% variant_labels(product.variant_labels).each do | label | %>
+          <th>
+            <%= text_field_tag 'product[variant_labels][]', label  %>
+          </th>
+        <% end %>
         <th class="dis">Price Change</th>
         <th class="dis">Qty. In Stock</th>
         <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody class="ui-sortable">
-      <%= raw presenter.render_variants(self) %>
+      <% variant_rows(product.variants).each_with_index do | row, index | %>
+        <tr>
+          <% (variant_labels(product.variant_labels) + %w[price quantity]).each do | field | %>
+            <td>
+              <%= text_field_tag "product[variant_rows][#{index}][]", row[field.to_sym]  %>
+            </td>
+          <% end %>
+          <td>
+            <%= link_to("Delete", '#', title: 'Delete', data: { behaviour: "product-variants-delete-row"}) %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
     <tfoot>
       <tr class="add admin_listings_add_variant_row_link">
         <td colspan="100%" class="odd">
           <%= link_to raw("#{image_tag('icn/icn_plus-10f0f22a6195e3f4459fe050081325c7.png', alt: '+')}Add Row"), '#', 
-          class: 'silver', data: { behaviour: "product-variants-add-row" } %>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+            class: 'silver', data: { behaviour: "product-variants-add-row" } %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>

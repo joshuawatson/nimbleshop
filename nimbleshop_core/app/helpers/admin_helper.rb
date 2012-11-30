@@ -80,4 +80,12 @@ module AdminHelper
     }.html_safe
   end
 
+  def variant_labels(labels)
+    labels.empty? ? ['',''] : labels
+  end
+
+  def variant_rows(variants)
+    rows = variants.reject(&:marked_for_destruction?).map(&:to_hash)
+    rows.empty? ? [{}, {}] : rows
+  end
 end
