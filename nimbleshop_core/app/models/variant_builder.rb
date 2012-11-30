@@ -16,7 +16,8 @@ class VariantBuilder
         product.variants.build(attrs) 
       end
     end
-    true
+
+    product.variant_labels = variant_labels.reject(&:blank?)
   end
 
   private
@@ -51,7 +52,7 @@ class VariantBuilder
       return hash if @values.all?(&:blank?)
 
       @labels.each_with_index do | key, idx | 
-        hash.update(key.to_sym => @values[idx])
+        hash.update(key.to_sym => @values[idx]) unless key.blank?
       end
 
       hash

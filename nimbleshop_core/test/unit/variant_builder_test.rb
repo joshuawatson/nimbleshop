@@ -52,4 +52,16 @@ class VariantBuilderTest < ActiveRecord::TestCase
 
     assert_equal 2, active.length 
   end
+
+  test 'ignore empty columns' do
+    @product.variant_labels = ['', 'size']
+    @product.variant_rows = { 2 => ['', 'small', 4, 1.34] }
+    @builder.rebuild
+
+    assert_equal %w[size], @product.variant_labels
+
+    expected = { size: 'small' }
+    variant = @product.variants.reject(&:marked_for_destruction?)[0]
+    assert_equal expected, variant.values
+  end
 end
