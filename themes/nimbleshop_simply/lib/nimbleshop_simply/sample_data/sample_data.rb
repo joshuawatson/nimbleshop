@@ -1,5 +1,5 @@
-module Sampledata
-  class Data
+module NimbleshopSimply
+  class SampleData
 
     attr_accessor :products
 
@@ -257,3 +257,4 @@ module Sampledata
 
   end
 end
+
