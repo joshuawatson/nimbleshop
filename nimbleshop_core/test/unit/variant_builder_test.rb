@@ -19,7 +19,7 @@ class VariantBuilderTest < ActiveRecord::TestCase
                  quantity: 4,
                  price: 12.89 }
 
-    assert_equal expected, green.to_hash
+    assert_equal expected, green.to_hash.except(:id)
     red = @product.variants[0]
   end
 
@@ -40,5 +40,16 @@ class VariantBuilderTest < ActiveRecord::TestCase
     active = @product.variants.reject(&:marked_for_destruction?)
 
     assert_equal 3, active.length 
+  end
+
+  test 'ignore empty row' do
+    @product.variant_rows = { 0 => %w[green 3 6 2.34],
+                              1 => %w[blue 3 4 1.34],
+                              2 => ['', '', 4, 1.34] }
+    @builder.rebuild
+
+    active = @product.variants.reject(&:marked_for_destruction?)
+
+    assert_equal 2, active.length 
   end
 end

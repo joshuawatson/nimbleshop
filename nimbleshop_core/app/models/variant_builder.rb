@@ -10,9 +10,12 @@ class VariantBuilder
     product.variants.each(&:mark_for_destruction)
 
     variant_rows.each do | row | 
-      product.variants.build(attributes_for_variant(row))
-    end
+      attrs = attributes_for_variant(row)
 
+      if attrs[:values].present?
+        product.variants.build(attrs) 
+      end
+    end
     true
   end
 
@@ -45,6 +48,8 @@ class VariantBuilder
 
     def values
       hash = {}
+      return hash if @values.all?(&:blank?)
+
       @labels.each_with_index do | key, idx | 
         hash.update(key.to_sym => @values[idx])
       end
