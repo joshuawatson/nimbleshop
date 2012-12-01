@@ -1,18 +1,26 @@
 window.manageVariants = class Variant
   constructor: ->
+    @initData()
+    @initEvents()
+
+  initEvents: ->
+    ($ '.variant-selectors').
+        live('change', @updateProductPrice).
+        trigger('change')
+
+  initData: ->
     @price =  $('#product-price').data().price
     @labels = $('.variant-selectors').map (i, selectField) -> 
       $(selectField).data().name
 
-    @variants = $('.variants-info').map (i, element) => 
+    @variants       = [] 
+    @variantsArray  = []
+
+    $('.variants-info').map (i, element) => 
       variant = $(element).data()
-
-    @variantsArray = @variants.map (i, variant) =>
-      $.makeArray(@labels.map (k, inner) -> variant[inner])
-
-    ($ '.variant-selectors').live 'change', @updateProductPrice
-
-    $($('.variant-selectors:first')).trigger('change')
+      @variants.push(variant)
+      inner = $.makeArray(@labels.map (k, inner) -> variant[inner])
+      @variantsArray.push(inner)
 
   updateProductPrice: =>
     if variant = @matchingVariant()
@@ -21,7 +29,15 @@ window.manageVariants = class Variant
       @disableCheckout()
 
   matchingVariant: ->
-    @variants[@variantsArray.index(@currentVariantCombination())]
+    current = @currentVariantCombination()
+    index = 0
+    for variant in @variantsArray
+      match = true
+      for c in current
+        match = (variant.indexOf(c) != -1) if match
+      return @variants[index] if match
+      index++
+    null
 
   disableCheckout: ->
     $('#product-price').
@@ -37,6 +53,5 @@ window.manageVariants = class Variant
 
   currentVariantCombination: ->
     $('.variant-selectors').map (i, e) -> $(e).attr('value')
-
 $ ->
   new window.manageVariants()
