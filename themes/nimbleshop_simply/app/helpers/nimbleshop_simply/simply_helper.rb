@@ -28,5 +28,9 @@ module NimbleshopSimply
 
       options_for_select(options)
     end
+
+    def to_variant_hash(hash)
+      hash.map { | key, value | "#{key} - #{value}" }.join(', ')
+    end
   end
 end
