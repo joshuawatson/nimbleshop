@@ -39,3 +39,29 @@ describe "ManageVariants", ->
     it "replace id", ->
       expect(firstRow.attr('id'))
         .toBe('product_variant_rows_122_')
+
+  describe "add row event", ->
+    count = null
+    beforeEach ->
+      count = $(".variant tbody tr").length
+      ($ "a[data-behaviour='product-variants-add-row']").
+        trigger('click')
+
+    it "should add new row with all the columns", ->
+      expect($(".variant tbody tr").length).toBe(count + 1) 
+
+    it "focus to first column of the first column", ->
+      expect($(".variant tbody tr:last input:first")).toBeFocused()
+
+  describe "remove row event", ->
+    firstRow = null
+    beforeEach ->
+      firstRow = $(".variant tbody tr:first")
+
+      firstRow.
+        find("a[data-behaviour='product-variants-delete-row']").
+        trigger('click')
+
+    it "should remove the variant row", ->
+      newFirstRowId = $(".variant tbody tr:first input").attr('id')
+      expect(firstRow.find(':input').attr('id')).not.toBe(newFirstRowId)

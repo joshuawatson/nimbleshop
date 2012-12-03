@@ -1,6 +1,5 @@
 window.ManageVariants = class ManageVariants
   constructor: ->
-    @variantRoot = $(".variant")
     @initActions()
 
   clearAllInputFields: (content) ->
@@ -12,11 +11,11 @@ window.ManageVariants = class ManageVariants
 
     ###
         clone the first row and replace the name with currrent time
-        product[variant_rows][0][] 
-        to
-        product[variant_rows][12121120][] 
-        when time = 12121120
+        newId = 12121120
+        product[variant_rows][0][] to product[variant_rows][12121120][] 
+        product_variant_rows_0_ to product_variant_rows_12121120_
     ###
+    
     regex = /(\[|_)\d+(\]|_)/g
     html  = row.html().replace(regex, "$1#{newId}$2")
     $("<tr>#{html}</tr>")
@@ -24,12 +23,20 @@ window.ManageVariants = class ManageVariants
   addVariantRow: ->
     @cloneRow @firstRow().clone(), new Date().getTime()
 
+  variantRoot: ->
+    $(".variant")
+
   firstRow: ->
-    $(@variantRoot.find('tbody tr:first'))
+    $(@variantRoot().find('tbody tr:first'))
 
   addRow: =>
-    $(@variantRoot.find('tbody')).
-      append @addVariantRow()
+    $(@variantRoot().find('tbody')).
+      append(@addVariantRow())
+
+    @variantRoot().
+      find(" tbody tr:last input:first").
+      focus()
+
     false
   addColumn: =>
     ###
@@ -58,10 +65,9 @@ window.ManageVariants = class ManageVariants
     false
 
   initActions: ->
-    ($ "a[data-behaviour='product-variants-add-row']").click  @addRow 
-    ($ "a[data-behaviour='product-variants-add-column']").click  @addColumn
+    ($ "a[data-behaviour='product-variants-add-row']").live  'click', @addRow 
+    ($ "a[data-behaviour='product-variants-add-column']").live  'click', @addColumn
     ($ "a[data-behaviour='product-variants-delete-column']").live 'click', @removeColumn
     ($ "a[data-behaviour='product-variants-delete-row']").live 'click', @removeRow
-
 $ ->
   new window.ManageVariants
