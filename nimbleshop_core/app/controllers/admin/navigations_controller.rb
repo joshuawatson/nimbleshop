@@ -3,7 +3,7 @@
 #
 class Admin::NavigationsController < AdminController
 
-  before_filter :load_link_group
+  before_filter :load_link_group!
 
   respond_to :html
 
@@ -16,7 +16,7 @@ class Admin::NavigationsController < AdminController
     respond_to do |format|
       format.html do
 
-        @navigation = @link_group.navigations.build(params[:navigation])
+        @navigation = @link_group.navigations.build params[:navigation]
 
         if @navigation.save
           redirect_to [:admin, :link_groups], notice: t(:successfully_added)
@@ -32,7 +32,7 @@ class Admin::NavigationsController < AdminController
     respond_to do |format|
       format.html do
 
-        @navigation = @link_group.navigations.find_by_id!(params[:id])
+        @navigation = @link_group.navigations.find_by_id! params[:id]
         @navigation.destroy
         redirect_to [:admin, :link_groups], notice: t(:successfully_deleted)
 
@@ -42,8 +42,8 @@ class Admin::NavigationsController < AdminController
 
   private
 
-  def load_link_group
-    @link_group = LinkGroup.find_by_permalink!(params[:link_group_id])
+  def load_link_group!
+    @link_group = LinkGroup.find_by_permalink! params[:link_group_id]
   end
 
 end

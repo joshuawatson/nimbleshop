@@ -1,6 +1,6 @@
 class Admin::ShippingZonesController < AdminController
 
-  before_filter :load_shipping_zone, only: [:edit, :update, :destroy]
+  before_filter :load_shipping_zone!, only: [:edit, :update, :destroy]
 
   respond_to :html
 
@@ -19,7 +19,7 @@ class Admin::ShippingZonesController < AdminController
   end
 
   def update
-    if @shipping_zone.update_attributes(post_params[:shipping_zone])
+    if @shipping_zone.update_attributes post_params[:shipping_zone]
       redirect_to admin_shipping_zones_path, notice: t(:successfully_updated)
     else
       respond_with @shipping_zone
@@ -27,7 +27,7 @@ class Admin::ShippingZonesController < AdminController
   end
 
   def create
-    @shipping_zone = CountryShippingZone.new(post_params[:shipping_zone])
+    @shipping_zone = CountryShippingZone.new post_params[:shipping_zone]
     if @shipping_zone.save
       redirect_to admin_shipping_zones_path, notice: t(:successfully_created)
     else
@@ -55,8 +55,8 @@ class Admin::ShippingZonesController < AdminController
     params.permit(shipping_zone: [ :name, :country_code, :state_code, :country_shipping_zone_id])
   end
 
-  def load_shipping_zone
-    @shipping_zone = ShippingZone.find_by_permalink!(params[:id])
+  def load_shipping_zone!
+    @shipping_zone = ShippingZone.find_by_permalink! params[:id]
   end
 
 end

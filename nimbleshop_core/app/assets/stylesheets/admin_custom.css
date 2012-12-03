@@ -110,3 +110,11 @@ footer .content a {
 .disable-payment-method-link {
   float: right;
 }
+
+.page-header h1 {
+  color: #ccc;
+}
+
+h1.ns-page-title {
+  color: #ccc;
+}

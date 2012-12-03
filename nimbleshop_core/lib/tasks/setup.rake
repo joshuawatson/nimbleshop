@@ -9,8 +9,11 @@ namespace :nimbleshop do
 
       Rake::Task["db:seed"].invoke
 
+      theme_klass_name = 'NimbleshopSimply'
+
       puts "Loading sample data ..."
-      Sampledata::Data.new.populate
+      cmd = "#{theme_klass_name.underscore}:populate_sample_data"
+      Rake::Task[cmd].invoke
 
       puts "Loading paymen records ..."
       Rake::Task["nimbleshop_splitable:load_record"].invoke

@@ -2,7 +2,7 @@ require "test_helper"
 
 class OrdersAcceptanceTest <  ActionDispatch::IntegrationTest
 
-  test "paid using splitable" do
+  test "paying using splitable" do
     order = create(:order_paid_using_splitable, payment_status: 'purchased')
 
     visit admin_path
@@ -12,7 +12,7 @@ class OrdersAcceptanceTest <  ActionDispatch::IntegrationTest
     assert page.has_content?('Splitable')
   end
 
-  test "paid using paypalwp" do
+  test "paying using paypalwp" do
     order = create(:order_paid_using_paypalwp, payment_status: 'purchased')
 
     visit admin_path
@@ -22,7 +22,7 @@ class OrdersAcceptanceTest <  ActionDispatch::IntegrationTest
     assert page.has_content?('Paypal website payments standard')
   end
 
-  test "paid using authorize.net" do
+  test "paying using authorize.net" do
     order = create(:order_paid_using_authorizedotnet, payment_status: 'authorized')
 
     visit admin_path
@@ -33,7 +33,7 @@ class OrdersAcceptanceTest <  ActionDispatch::IntegrationTest
     assert page.has_content?('Payment status AUTHORIZED')
   end
 
-  test "payment status abandoned" do
+  test "default payment status should be abandoned" do
     order = build :order, email: nil, shipping_address: nil, shipping_method: nil
     order.save(validate: false)
 
@@ -45,7 +45,7 @@ class OrdersAcceptanceTest <  ActionDispatch::IntegrationTest
     assert page.has_content?('Payment status ABANDONED')
   end
 
-  test "show order with line item and product is deleted" do
+  test "even if product is deleted order with line item should come up" do
     order = build :order, email: nil, shipping_address: nil, shipping_method: nil
     order.save(validate: false)
 

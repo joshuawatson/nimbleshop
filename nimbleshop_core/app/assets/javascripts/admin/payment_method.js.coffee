@@ -1,12 +1,8 @@
 window.Nimbleshop = window.Nimbleshop || {}
 
-Nimbleshop.managePaymentMethods = class ManagePaymentMethods
+Nimbleshop.editPaymentMethod = class EditPaymentMethod
   constructor: ->
-    @editPaymentForm()
-    @selectFirstPaymentMethod()
-
-  editPaymentForm: ->
-    $('[data-behavior~=payment-method-edit-link]').on 'click', ->
+    $(document).on 'click', '[data-behavior~=payment-method-edit-link]', ->
       $this = $(this)
       permalink = $this.data('payment-method-permalink')
       console.log permalink
@@ -14,9 +10,12 @@ Nimbleshop.managePaymentMethods = class ManagePaymentMethods
       contentElem.parent().children().hide()
       contentElem.show()
 
-  selectFirstPaymentMethod: ->
+new Nimbleshop.editPaymentMethod
+
+
+Nimbleshop.selectFirstPaymentMethod = class SelectFirstPaymentMethod
+  constructor: ->
     $('[data-behavior~=payment-method-edit-link]:first').trigger('click')
 
-
 $ ->
-  new Nimbleshop.managePaymentMethods
+  new Nimbleshop.selectFirstPaymentMethod

@@ -26,14 +26,12 @@ class Admin::ProductsController < AdminController
   def create
     respond_to do |format|
       format.html do
-
         @product = Product.new(post_params[:product])
         if @product.save
           redirect_to edit_admin_product_path(@product), notice: t(:successfully_added)
         else
           render action: 'new'
         end
-
       end
     end
   end
@@ -41,14 +39,12 @@ class Admin::ProductsController < AdminController
   def update
     respond_to do |format|
       format.html do
-
         @product_groups = ProductGroup.contains_product(@product)
         if @product.update_attributes(post_params[:product])
           redirect_to edit_admin_product_path(@product), notice: t(:successfully_updated)
         else
           respond_with @product
         end
-
       end
     end
   end
@@ -65,7 +61,7 @@ class Admin::ProductsController < AdminController
   end
 
   def load_product!
-    @product = Product.find_by_permalink!(params[:id])
+    @product = Product.find_by_permalink! params[:id]
   end
 
 end

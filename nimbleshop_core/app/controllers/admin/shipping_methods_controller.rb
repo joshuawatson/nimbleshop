@@ -73,11 +73,11 @@ class Admin::ShippingMethodsController < AdminController
   private
 
   def load_shipping_method
-    @shipping_method = @shipping_zone.shipping_methods.find_by_id!(params[:id])
+    @shipping_method = @shipping_zone.shipping_methods.find_by_id! params[:id]
   end
 
   def load_shipping_zone
-    @shipping_zone = ShippingZone.find_by_permalink!(shipping_zone_param)
+    @shipping_zone = ShippingZone.find_by_permalink! shipping_zone_param
   end
 
   def shipping_zone_param

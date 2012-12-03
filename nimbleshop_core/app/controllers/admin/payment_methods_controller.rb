@@ -1,6 +1,7 @@
 class Admin::PaymentMethodsController < AdminController
 
   before_filter :load_payment_methods
+  before_filter :load_payment_method, only: [:enable, :disable]
 
   def index
     @disabled_payment_methods = PaymentMethod.disabled.ascending
@@ -16,20 +17,16 @@ class Admin::PaymentMethodsController < AdminController
   end
 
   def enable
-    payment_method = PaymentMethod.find_by_permalink! params[:id]
-    payment_method.update_attributes! enabled: true
-    flash[:notice] = "Payment method #{payment_method.name} has been enabled"
+    @payment_method.update_attributes! enabled: true
     respond_to do |format|
-      format.html { redirect_to  action: :index }
+      format.html { redirect_to  action: :index, notice: "Payment method #{@payment_method.name} has been enabled" }
     end
   end
 
   def disable
-    payment_method = PaymentMethod.find_by_permalink! params[:id]
-    payment_method.update_attributes! enabled: false
-    flash[:notice] = "Payment method #{payment_method.name} has been disabled"
+    @payment_method.update_attributes! enabled: false
     respond_to do |format|
-      format.html { redirect_to  action: :index }
+      format.html { redirect_to  action: :index, notic: "Payment method #{@payment_method.name} has been disabled" }
     end
   end
 
@@ -37,6 +34,10 @@ class Admin::PaymentMethodsController < AdminController
 
   def load_payment_methods
     @payment_methods = PaymentMethod.enabled.ascending
+  end
+
+  def load_payment_method
+    @payment_method = PaymentMethod.find_by_permalink! params[:id]
   end
 
 end

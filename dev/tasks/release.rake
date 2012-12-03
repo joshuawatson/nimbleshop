@@ -139,13 +139,13 @@ end
 namespace :nimbleshop do
 
   desc 'Packages nimbleshop and other extensions as a gem'
-  task :package_all => all.map { |e| "#{e}:package" }
+  task package_all: all.map { |e| "#{e}:package" }
 
   desc 'Runs bundle install on nimbleshop and other extensions'
-  task :bundle_all => engines.map { |e| "#{e}:bundle" }
+  task bundle_all: engines.map { |e| "#{e}:bundle" }
 
   desc 'Releases nimbleshop and other extensions as a gem'
-  task :release_all => (all.map { |e| "#{e}:release" } << "nimbleshop:tag_the_release")
+  task release_all: (all.map { |e| "#{e}:release" } << "nimbleshop:tag_the_release")
 
   desc 'Tag the release'
   task :tag_the_release do

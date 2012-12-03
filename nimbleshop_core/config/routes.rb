@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
 
-  mount Nimbleshop.theme_engine,           :at => '/'
-  mount NimbleshopAuthorizedotnet::Engine, :at => '/nimbleshop_authorizedotnet'
-  mount NimbleshopPaypalwp::Engine,        :at => '/nimbleshop_paypalwp'
-  mount NimbleshopSplitable::Engine,       :at => '/nimbleshop_splitable'
-  mount NimbleshopCod::Engine,             :at => '/nimbleshop_cod'
-  mount NimbleshopStripe::Engine,          :at => '/nimbleshop_stripe'
-
-  root to: Nimbleshop.root_route_segment
-
   get '/admin',           to: 'admin/main#index'
 
   # Ideally it should only be included in development mode
@@ -63,6 +54,7 @@ Rails.application.routes.draw do
   end
 
   mount NimbleshopAuthorizedotnet::Engine, at: '/nimbleshop_authorizedotnet'
+  mount NimbleshopStripe::Engine,          at: '/nimbleshop_stripe'
   mount NimbleshopPaypalwp::Engine,        at: '/nimbleshop_paypalwp'
   mount NimbleshopSplitable::Engine,       at: '/nimbleshop_splitable'
   mount NimbleshopCod::Engine,             at: '/nimbleshop_cod'

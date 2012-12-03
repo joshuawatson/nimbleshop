@@ -1,4 +1,3 @@
-
 namespace :nimbleshop_stripe do
 
   desc 'copies images from engine to main rails application'

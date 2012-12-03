@@ -1,11 +1,12 @@
 class Admin::OrdersController < AdminController
 
+  before_filter :load_order!, except: :index
+
   respond_to :html
 
   def capture_payment
     respond_to do |format|
       format.html do
-        @order = Order.find_by_number! params[:id]
         @order.payment_method.kapture! @order
         redirect_to admin_order_path(@order), notice: "Amount was successfully captured"
       end
@@ -15,7 +16,6 @@ class Admin::OrdersController < AdminController
   def purchase_payment
     respond_to do |format|
       format.html do
-        @order = Order.find_by_number! params[:id]
         @order.purchase!
         redirect_to admin_order_path(@order), notice: "Amount was successfully paid"
       end
@@ -28,8 +28,6 @@ class Admin::OrdersController < AdminController
   end
 
   def show
-    @order = Order.find_by_number! params[:id]
-
     if @order.shipments.any?
       @shipment = @order.shipments.first
     else
@@ -38,6 +36,12 @@ class Admin::OrdersController < AdminController
     end
 
     respond_with @order
+  end
+
+  private
+
+  def load_order!
+    @order = Order.find_by_number! params[:id]
   end
 
 end

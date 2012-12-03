@@ -50,7 +50,7 @@ class Creditcard
     options[:year]    = year
     options[:month]   = month
     options[:number]  = number
-    options[:type]    = cardtype
+    options[:brand]    = cardtype
     options[:verification_value]  = verification_value
   end
 

@@ -1,5 +1,4 @@
 NimbleshopSimply::Engine.routes.draw do
-
   get "/pages/about-us",           to: "pages#about_us",   as: :about_us
   get "/pages/contact-us",         to: "pages#contact_us", as: :contact_us
 
@@ -21,4 +20,8 @@ NimbleshopSimply::Engine.routes.draw do
     end
   end
 
+end
+
+Rails.application.routes.draw do
+  root to: 'nimbleshop_simply/products#index'
 end
