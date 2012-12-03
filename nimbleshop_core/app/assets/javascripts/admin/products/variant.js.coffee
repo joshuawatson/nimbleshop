@@ -28,9 +28,9 @@ window.ManageVariants = class ManageVariants
     $(@variantRoot.find('tbody tr:first'))
 
   addRow: =>
-    ($ ".variant tbody").append @addVariantRow
+    $(@variantRoot.find('tbody')).
+      append @addVariantRow()
     false
-
   addColumn: =>
     ###
         clone first column of each row
@@ -63,5 +63,5 @@ window.ManageVariants = class ManageVariants
     ($ "a[data-behaviour='product-variants-delete-column']").live 'click', @removeColumn
     ($ "a[data-behaviour='product-variants-delete-row']").live 'click', @removeRow
 
-->
-  new window.ManageVariants()
+$ ->
+  new window.ManageVariants
