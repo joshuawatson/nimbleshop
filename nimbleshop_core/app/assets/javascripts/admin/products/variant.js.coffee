@@ -1,10 +1,15 @@
-window.Nimbleshop = window.Nimbleshop || {}
-
-Nimbleshop.manageVariants = class ManageVariants
+window.ManageVariants = class ManageVariants
   constructor: ->
+    @variantRoot = $(".variant")
     @initActions()
 
-  addVariantRow: ->
+  clearAllInputFields: (content) ->
+    # clear all column values in the cloned row
+    content.find('input').removeAttr('value')
+
+  cloneRow: (row, newId) ->
+    @clearAllInputFields row
+
     ###
         clone the first row and replace the name with currrent time
         product[variant_rows][0][] 
@@ -12,16 +17,15 @@ Nimbleshop.manageVariants = class ManageVariants
         product[variant_rows][12121120][] 
         when time = 12121120
     ###
-    
-    newid   = new Date().getTime() 
-    matcher = /(\[|_)\d+(\]|_)/g
+    regex = /(\[|_)\d+(\]|_)/g
+    html  = row.html().replace(regex, "$1#{newId}$2")
+    $("<tr>#{html}</tr>")
 
-    content = ($ ".variant tbody tr:first").clone()
+  addVariantRow: ->
+    @cloneRow @firstRow().clone(), new Date().getTime()
 
-    # clear all column values in the cloned row
-    content.find('input').removeAttr('value')
-
-    $('<tr/>').append content.html().replace(matcher, "$1#{newid}$2")
+  firstRow: ->
+    $(@variantRoot.find('tbody tr:first'))
 
   addRow: =>
     ($ ".variant tbody").append @addVariantRow
@@ -59,5 +63,5 @@ Nimbleshop.manageVariants = class ManageVariants
     ($ "a[data-behaviour='product-variants-delete-column']").live 'click', @removeColumn
     ($ "a[data-behaviour='product-variants-delete-row']").live 'click', @removeRow
 
-$ ->
-  new Nimbleshop.manageVariants
+->
+  new window.ManageVariants()
