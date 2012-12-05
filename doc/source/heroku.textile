@@ -83,6 +83,12 @@ heroku config:add S3_SECRET_ACCESS_KEY=xxxxxxxxxx --app rocky-temple-39
 heroku config:add S3_BUCKET_NAME=xxxxxxxxxxxxxxxx --app rocky-temple-39
 </shell>
 
+h4. Push your code
+
+<shell>
+git push heroku master
+</shell>
+
 h4. Run migrations
 
 Run migrations by executing following command.
