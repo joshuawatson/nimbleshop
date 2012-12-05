@@ -2,6 +2,8 @@
 # This file is responsible for releasing newer version of nimbleshop gems.
 # Here is the order in which it should be executed.
 #
+#
+# Change the version number in version.rb file .
 # rake nimbleshop:package_all
 # rake nimbleshop:bundle_all
 # git commit any changes to Gemfile and Gemfile.lock
