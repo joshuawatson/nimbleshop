@@ -29,7 +29,7 @@ class Gemm
 
   def clean
     mkdir_p pkg_dir unless File.exists? pkg_dir
-    rm_f gem_filename
+    FileUtils.rm_f gem_filename
   end
 
   def build
