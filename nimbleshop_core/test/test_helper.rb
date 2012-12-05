@@ -15,7 +15,7 @@ Dir["#{File.dirname(__FILE__)}/factories/**"].each { |f| require File.expand_pat
 
 require 'active_record/fixtures'
 
-require "mocha/setup"
+require "mocha"
 
 DatabaseCleaner.strategy = :truncation
 Capybara.default_wait_time  = 5

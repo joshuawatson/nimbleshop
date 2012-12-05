@@ -64,4 +64,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'hashr', '= 0.0.19'
 
   gem.add_dependency 'jquery-rails', '~> 2.1.1'
+
+  gem.add_development_dependency 'mocha', '~> 2.1.1'
 end
