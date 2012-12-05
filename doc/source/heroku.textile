@@ -35,11 +35,18 @@ If you are using heroku then you might be interested in "this":http://blog.rails
 
 h3. Deploying the application on heroku
 
-For the purpose of this discussion let's assume that I want a store at +www.trishil.com+ . So in this case the application name which will be deployed to heroku will be +trishil-production.herokuapp.com+. Follow this article(yet to be written) to configure your DNS so that +www.trishil.com+ points to +trishil-production.herokuapp.com+ .
+Follow the instructions given below to deploy the application on heroku.
 
 h4. Creating rails application
 
-"Follow the instructions mentioned here":http://nimbleshop.org/getting_started.html and create a rails application. For me the the name of application is +trishil+. It must be different for you because +trishil-production.herokuapp.com+ is taken by me.
+"Follow the instructions mentioned here":http://nimbleshop.org/getting_started.html and create a rails application.
+
+h4. Getting heroku gem
+
+<shell>
+gem install heroku
+gem update heroku
+</shell>
 
 h4. Changes to Gemfile
 
@@ -59,108 +66,21 @@ end
 
 Notice that in the last line I moved the line +gem 'sqlite3'+ inside the group +:development, :test+. Heroku does not work well with +sqlite3+ gem so ensure that this gem is only present for +development+ and +test+ group.
 
-h3. Using push2heroku gem
 
-At "BigBinary":http://bigbinary.com we use +push2heroku+ gem to deploy to heroku. You do not have to use it. If you are familiar with how to deploy to heroku then you can skip to next section. However if you are curious to see how easy it it to deploy with +push2heroku+ gem then read on.
-
-h4. Adding push2heroku gem
-
-Open Gemfile and add following code
+h4. Create a heroku application
 
 <shell>
-group :development, :test do
-  gem 'push2heroku'
-end
+heroku create
 </shell>
 
-Now run +bundle install+ .
-
-h4. push2heroku.yml file
-
-Copy "this":https://gist.github.com/3098161 file and save it as +config/push2heroku.yml+ .
-
-Since pictures are stored at "amazon s3" put in proper s3 bucket name, s3 access key id and s3 secret access key in the +config/push2heroku.yml+ file.
-
-h4. Deployment
-
-Now inorder to deploy just execute
-
-<shell>
-bundle exec rake push2heroku
-</shell>
-
-+push2heroku+ has some more features so please go through the "README":https://github.com/neerajdotname/push2heroku/blob/master/README.md .
-
-h4. Deploying to heroku without push2heroku
-
-If you do not want to use +push2heroku+ gem then follow the instructions given below to deploy your application to heroku.
-
-<shell>
-gem install heroku
-gem update heroku
-</shell>
-
-h4. Deploying from production branch
-
-In the example below I would be deploying from +production+ branch . But you do not have to have +production+ branch. You can deploy from +master+ branch too. Just replace +production+ with +master+ in the commands that I show below.
-
-<shell>
-git checkout -b production
-</shell>
-
-h4. Create hproduction remote
-
-Create a remote named hproduction . Here +hproduction+ stand for +heroku production+. This name can be anything. I do not want this name to be +production+ because sometimes it confuses people about which +production+ I am talking about. Also notice that we will be using "cedar stack":http://devcenter.heroku.com/articles/cedar .
-
-<shell>
-heroku create trishil-production --remote hproduction --stack cedar
-</shell>
-
-h4. Push code to heroku
-
-Next command might seem a bit confusing. This command is pushing the local production branch to heroku’s hproduction branch.
-
-<shell>
-git push hproduction production:master
-</shell>
-
-h4. Set Rails environment to production
-
-Set the Rails environment to production by executing following commands.
-
-<shell>
-heroku config:add RACK_ENV=production  --app trishil-production
-heroku config:add RAILS_ENV=production --app trishil-production
-</shell>
-
-Above step is not really needed for +production+ branch but I am adding this step here for the sake of complentess. Let's say that you have +staging+ branch and you are deploying from +staging+ branch. In that case in this step you will set +staging+ as both +RACK_ENV+ and +RAILS_ENV+ .
-
-h4. Setup ssl
-
-Heroku provides free ssl for any `.heroku.com` domain. In this case we can turn on ssl for `http://trishil-production.heroku.com` .
-
-<shell>
-heroku addons:add ssl:piggyback --app trishil-staging
-</shell>
-
-h4. Set log level to debug
-
-Set the log level to +debug+ to get more information about the application.
-
-<shell>
-heroku config:add LOG_LEVEL=DEBUG --app trishil-production
-</shell>
-
-When the production app is first deployed then I set the +LOG_LEVEL+ to +debug+ to get more information in the log.
-
-h4. Setup s3
+Let's say that our heroku app name is  +rocky-temple-39+ .
 
 Create bucket for AWS S3. Login at "AWS Management Console":https://console.aws.amazon.com/s3/home and create a bucket. The bucket name could be anything like indichai-staging . It is recommended that you do not have a dot in the bucket name. Next configure aws s3 settings in the application.
 
 <shell>
-heroku config:add S3_ACCESS_KEY_ID=xxxxxxxxxxxxxx --app trishil-production
-heroku config:add S3_SECRET_ACCESS_KEY=xxxxxxxxxx --app trishil-production
-heroku config:add S3_BUCKET_NAME=xxxxxxxxxxxxxxxx --app trishil-production
+heroku config:add S3_ACCESS_KEY_ID=xxxxxxxxxxxxxx --app rocky-temple-39
+heroku config:add S3_SECRET_ACCESS_KEY=xxxxxxxxxx --app rocky-temple-39
+heroku config:add S3_BUCKET_NAME=xxxxxxxxxxxxxxxx --app rocky-temple-39
 </shell>
 
 h4. Run migrations
@@ -168,7 +88,7 @@ h4. Run migrations
 Run migrations by executing following command.
 
 <shell>
-heroku run rake db:migrate --app trishil-production
+heroku run rake db:migrate --app rocky-temple-39
 </shell>
 
 h4. Run setup
@@ -176,9 +96,9 @@ h4. Run setup
 Configure store with default settings and load products by executing following command.
 
 <shell>
-heroku run rake nimbleshop:setup:db --app trishil-production
+heroku run rake nimbleshop:setup:db --app rocky-temple-39
 </shell>
 
 h4. Visting site
 
-Visit staging site at "http://trishil-production.herokuapp.com":http://trishil-production.herokuapp.com .
+Visit staging site at "http://rocky-temple-39.herokuapp.com":http://rocky-temple-39.herokuapp.com .
