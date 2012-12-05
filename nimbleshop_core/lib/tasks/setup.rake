@@ -15,7 +15,7 @@ namespace :nimbleshop do
       cmd = "#{theme_klass_name.underscore}:populate_sample_data"
       Rake::Task[cmd].invoke
 
-      puts "Loading paymen records ..."
+      puts "Loading payment records ..."
       Rake::Task["nimbleshop_splitable:load_record"].invoke
       Rake::Task["nimbleshop_paypalwp:load_record"].invoke
       Rake::Task["nimbleshop_authorizedotnet:load_record"].invoke
