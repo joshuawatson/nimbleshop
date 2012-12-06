@@ -28,7 +28,17 @@ git checkout v0.0.14
 
 After the above command you will be in +no branch+ . That's ok.
 
-Now copy this nimbleshop directory to your rails project such that the directories look like this.
+Now we need to copy nimbleshop directory to main rails project. However before copying delete the .git directory of nimbleshop. And then copy using the commands given below.
+
+Note that in the below command my rails application is named +myshop+ and it resides at +/Users/nsingh/dev/projects/+ . In your case the directory will be different.
+
+<shell>
+rm -rf .git
+cd ..
+cp -rv nimbleshop /Users/nsingh/dev/projects/myshop
+</shell>
+
+After copying nimbleshop your main rails application might look like this.
 
 <shell>
 -rw-r--r--   1 nsingh  staff   916 Dec  5 23:06 Gemfile
