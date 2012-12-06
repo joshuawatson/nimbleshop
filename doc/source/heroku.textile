@@ -2,37 +2,6 @@ h2. Heroku
 
 endprologue.
 
-h3. Heroku pros and cons
-
-Heroku is a great service to deploy and run Ruby on Rails applications.
-
-nimbleShop has taken extra steps to ensure that deploying nimbleShop on heroku is smooth. It does not mean that nimbleShop applications will not run on rackspace or other hosting providers.
-
-Now lets look at some of the features/cons which are most discussed.
-
-h4. Dyno Idling
-
-One of the biggest complaints about heroku is that using free account means your users will have a slower web experience. That happens because of dyno idling .
-
-> Apps that have only 1 web dyno will be idled out after a period of inactivity. The web dyno will be shut down. When a request comes in to an idled app your web dyno will be automatically spun back up, causing a few second delay for this first request. Subsequent requests will perform normally.  Apps that have more than 1 web dyno are never idled out. Workers dynos are never idled out.
-
-
-Note that dyno idling never happens if you have a paid dyno which costs $35 per month.
-
-h4. Avoiding dyno idling
-
-So now the obvious question is what are the ways of avoiding dyno idling. Stackoverflow has "a good answer":http://stackoverflow.com/questions/5480337/easy-way-to-prevent-heroku-idling on this topic.
-
-h4. Free https account
-
-During the testing stages you can use https://myapp.heroku.com . This is great for testing your application before going and purchaing SSL certificate.
-
-> SSL can be turned on for any .heroku.com domain by enabling the Piggyback SSL. An app specific SSL certificate is not required for Piggyback SSL. The *.heroku.com wildcard SSL certificate is used for all apps.
-
-h4. Unicorn on heroku
-
-If you are using heroku then you might be interested in "this":http://blog.railsonfire.com/2012/05/06/Unicorn-on-Heroku.html article which discusses how to get performance boost by running unicorn on heroku. Just to be clear we have not used this technique ourselves.
-
 h3. Deploying the application on heroku
 
 Follow the instructions given below to deploy the application on heroku.
