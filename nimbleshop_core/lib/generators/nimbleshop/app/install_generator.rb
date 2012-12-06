@@ -52,7 +52,7 @@ module Nimbleshop
     end
 
     def migrate_database!
-      puts 'coping migration files'
+      puts 'copying migration files'
       run 'bundle exec rake railties:install:migrations'
       run 'bundle exec rake db:create db:migrate'
       run 'bundle exec rake db:test:prepare'
