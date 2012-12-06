@@ -26,6 +26,14 @@
       name: Cash on delivery
       url: cod.html
 
+
+-
+  name: Themes
+  documents:
+    -
+      name: Customizing theme
+      url: customize_theme.html
+
 -
   name: Deployment
   documents:
