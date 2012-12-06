@@ -28,7 +28,7 @@ class Gemm
   end
 
   def clean
-    mkdir_p pkg_dir unless File.exists? pkg_dir
+    FileUtils.mkdir_p pkg_dir unless File.exists? pkg_dir
     FileUtils.rm_f gem_filename
   end
 
