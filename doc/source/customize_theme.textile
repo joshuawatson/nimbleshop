@@ -20,6 +20,8 @@ git tag -l
 
 +git tag -l+ should list the version you are working with.
 
+Next let's checkout the version +0.0.14+ .
+
 <shell>
 git checkout v0.0.14
 </shell>

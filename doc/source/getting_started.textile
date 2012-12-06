@@ -20,8 +20,8 @@ rails new myshop
 Open +Gemfile+ and add following two lines
 
 <shell>
-gem 'nimbleshop'
-gem 'nimbleshop_simply'
+gem 'nimbleshop', '~> 0.0.15'
+gem 'nimbleshop_simply', '~> 0.0.15'
 </shell>
 
 +nimbleshop_simply+ is the theme that we are using here.
