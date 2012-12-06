@@ -1,0 +1,76 @@
+h2. Customize theme
+
+endprologue.
+
+h3. Theme customization
+
+nimbleShop allows you to customize theme. Here is how you can do it.
+
+h4. Get the theme locally
+
+First you need to get the +nimelshop_simply+ theme locally. Look into your +Gemfile.lock+ and search for +nimbleshop+ to find the version of nimbleshop you are working with.Let's assume that you are using +0.0.14+ .
+
+First clone the nimbleshop repository
+
+<shell>
+git clone git://github.com/nimbleshop/nimbleshop.git
+cd nimbleshop
+git tag -l
+</shell>
+
++git tag -l+ should list the version you are working with.
+
+<shell>
+git checkout v0.0.14
+</shell>
+
+After the above command you will be in +no branch+ . That's ok.
+
+Now copy this nimbleshop directory to your rails project such that the directories look like this.
+
+<shell>
+-rw-r--r--   1 nsingh  staff   916 Dec  5 23:06 Gemfile
+-rw-r--r--   1 nsingh  staff  5655 Dec  5 23:06 Gemfile.lock
+-rw-r--r--   1 nsingh  staff  9208 Dec  5 23:00 README.rdoc
+-rw-r--r--   1 nsingh  staff   271 Dec  5 23:00 Rakefile
+drwxr-xr-x   8 nsingh  staff   272 Dec  5 23:00 app
+drwxr-xr-x  11 nsingh  staff   374 Dec  5 23:01 config
+-rw-r--r--   1 nsingh  staff   156 Dec  5 23:00 config.ru
+drwxr-xr-x   7 nsingh  staff   238 Dec  5 23:05 db
+drwxr-xr-x   3 nsingh  staff   102 Dec  5 23:00 doc
+drwxr-xr-x   4 nsingh  staff   136 Dec  5 23:00 lib
+drwxr-xr-x   4 nsingh  staff   136 Dec  5 23:01 log
+drwxr-xr-x  17 nsingh  staff   578 Dec  6 09:42 nimbleshop
+drwxr-xr-x   8 nsingh  staff   272 Dec  5 23:03 public
+drwxr-xr-x   3 nsingh  staff   102 Dec  5 23:00 script
+drwxr-xr-x   6 nsingh  staff   204 Dec  5 23:05 tmp
+drwxr-xr-x   4 nsingh  staff   136 Dec  5 23:00 vendor
+</shell>
+
+Notice that there is nimbleshop directory in between. That is where the nimbleshop code was copied from earlier step.
+
+h4. Configuring app to use local nimbleshop theme.
+
+Open the +Gemfile+ of your app and add +path+ option to gem +nimbleshop_simply+ .
+
+<shell>
+gem 'nimbleshop_simply', path: './nimbleshop/themes/nimbleshop_simply'
+</shell>
+
+h4. Customizing theme
+
+Now open file +myshop/nimbleshop/themes/nimbleshop_simply/app/assets/stylesheets/nimbleshop_simply/custom.css.scss+ . Go to the bottom of the page and add following lines.
+
+<shell>
+body {
+  background: green;
+}
+</shell>
+
+h4. Start your rails server
+
+Now start your rails server by running command +rails server+ and visit +http:localhost:3000+ . If you see green background then it means your customization is working .
+
+h4. Customization is only for the theme
+
+Even though you have the full nimbleShop folder in your +myshop+ rails application, any changes made to outside of +nimbleshop_simply+ will not be taken into account.
