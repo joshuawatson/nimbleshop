@@ -17,11 +17,14 @@ h3. Building myshop using nimbleShop
 rails new myshop
 </shell>
 
-Open +Gemfile+ and add following line
+Open +Gemfile+ and add following two lines
 
 <shell>
 gem 'nimbleshop'
+gem 'nimbleshop_simply'
 </shell>
+
++nimbleshop_simply+ is the theme that we are using here.
 
 Next execute following commands:
 
