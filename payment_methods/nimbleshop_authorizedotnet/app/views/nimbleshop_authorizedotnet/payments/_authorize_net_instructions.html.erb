@@ -1,11 +1,12 @@
-<style>
-  #authorizenetsandboxhelp li {
-    margin-top: 2px;
-    margin-bottom: 2px;
-  }
-</style>
+<% if NimbleshopAuthorizedotnet::Authorizedotnet.current.test_mode?  %>
 
-<% if !Rails.env.production? && NimbleshopAuthorizedotnet::Authorizedotnet.first  %>
+  <style>
+    #authorizenetsandboxhelp li {
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+  </style>
+
   <div id='authorizenetsandboxhelp' class='modal hide fade'>
 
     <div class='modal-header'>
@@ -37,4 +38,5 @@
       </p>
     </div>
   </div>
+
 <% end %>
