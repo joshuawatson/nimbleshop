@@ -21,4 +21,19 @@ class PaymentMethod < ActiveRecord::Base
   def self.partialize
     name.gsub("PaymentMethod::","").underscore
   end
+
+  # return true if payment method is running in live mode
+  def live_mode?
+    !test_mode?
+  end
+
+  # return true if payment method is running in test mode
+  def test_mode?
+    self.mode == 'test'
+  end
+
+  def self.current
+    self.first
+  end
+
 end
