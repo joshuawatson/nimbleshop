@@ -10,6 +10,14 @@ h4. Creating rails application
 
 "Follow the instructions mentioned here":http://nimbleshop.org/getting_started.html and create a rails application.
 
+h4. git repo for the project
+
+<shell>
+git init .
+git add .
+git commit -m 'first commit'
+</shell>
+
 h4. Getting heroku gem
 
 <shell>
