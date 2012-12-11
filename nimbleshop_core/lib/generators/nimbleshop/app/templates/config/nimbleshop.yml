@@ -27,7 +27,7 @@ common:
   mailtrap:
     username: <%= ENV['MAILTRAPIO_USERNAME'] || 'nimbleshop' %>
     password: <%= ENV['MAILTRAPIO_PASSWORD'] || 'f42c2934fbc2e229' %>
-    address:  mailtrap.railsware.com
+    address:  mailtrap.io
     port:     2525
 
 development:
