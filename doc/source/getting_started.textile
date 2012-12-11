@@ -38,6 +38,6 @@ bundle exec rake nimbleshop:setup:db
 bundle exec rails server
 </shell>
 
-Now visit "http://localhost:3000":http:localhost:3000 and you should see your shop.
+Now visit "http://localhost:3000":http://localhost:3000 and you should see your shop.
 
 Access admin page by visiting "http://localhost:3000/admin":http://localhost:3000/admin .
