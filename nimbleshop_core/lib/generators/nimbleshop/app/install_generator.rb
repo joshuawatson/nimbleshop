@@ -11,6 +11,7 @@ module Nimbleshop
     def generate
       copy_nimbleshop_yml_file
       copy_initializer_files
+      copy_default_gravatar_image
 
       ensure_no_mass_protection
 
@@ -121,6 +122,14 @@ module Nimbleshop
     def copy_nimbleshop_yml_file
       from = File.expand_path('../templates/config/nimbleshop.yml', __FILE__)
       FileUtils.cp from,  "#{destination_path}/config/nimbleshop.yml"
+    end
+
+    # TODO this should be in assets folder but it was not working so I put it here so that
+    # it can be copied  over to the main rails application
+    def copy_default_gravatar_image
+      from = File.expand_path('../templates/assets/default_gravatar.jpg', __FILE__)
+      FileUtils.cp from,  "#{destination_path}/app/assets/images/default_gravatar.jpg"
+
     end
 
   end
