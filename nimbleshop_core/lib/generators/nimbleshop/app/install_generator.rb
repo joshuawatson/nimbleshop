@@ -9,7 +9,7 @@ module Nimbleshop
     source_root Pathname.new(File.expand_path('../templates', __FILE__))
 
     def generate
-      copy_files!
+      copy_initializer_files
 
       ensure_no_mass_protection
 
@@ -102,7 +102,7 @@ module Nimbleshop
       run 'bundle install'
     end
 
-    def copy_files!
+    def copy_initializer_files
       copy_nimbleshop_yml_file
 
       template "config/initializers/001_load_nimbleshop_config.rb", "#{destination_path}/config/initializers/001_load_nimbleshop_config.rb"
