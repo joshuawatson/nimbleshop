@@ -9,6 +9,7 @@ module Nimbleshop
     source_root Pathname.new(File.expand_path('../templates', __FILE__))
 
     def generate
+      copy_nimbleshop_yml_file
       copy_initializer_files
 
       ensure_no_mass_protection
@@ -103,8 +104,6 @@ module Nimbleshop
     end
 
     def copy_initializer_files
-      copy_nimbleshop_yml_file
-
       template "config/initializers/001_load_nimbleshop_config.rb", "#{destination_path}/config/initializers/001_load_nimbleshop_config.rb"
       template "config/initializers/cache_images.rb", "#{destination_path}/config/initializers/cache_images.rb"
       template "config/initializers/carrierwave.rb",  "#{destination_path}/config/initializers/carrierwave.rb"
