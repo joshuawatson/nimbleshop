@@ -103,7 +103,7 @@ module Nimbleshop
     end
 
     def copy_files!
-      handle_nimbleshop_yml_file
+      copy_nimbleshop_yml_file
 
       template "config/initializers/001_load_nimbleshop_config.rb", "#{destination_path}/config/initializers/001_load_nimbleshop_config.rb"
       template "config/initializers/cache_images.rb", "#{destination_path}/config/initializers/cache_images.rb"
@@ -119,7 +119,7 @@ module Nimbleshop
 
     # do not use template method to copy the file. template method actually executes the code
     #  <%= ENV['S3_ACCESS_KEY_ID'] %> inside nimbleshop.yml rather than copying that code
-    def handle_nimbleshop_yml_file
+    def copy_nimbleshop_yml_file
       from = File.expand_path('../templates/config/nimbleshop.yml', __FILE__)
       FileUtils.cp from,  "#{destination_path}/config/nimbleshop.yml"
     end
