@@ -53,10 +53,10 @@ module Nimbleshop
     end
 
     def ensure_no_mass_protection
-      f = 'config/application.rb'
+      file = 'config/application.rb'
       current = 'config.active_record.whitelist_attributes = true'
       new = 'config.active_record.whitelist_attributes = false'
-      gsub_file f, current, new, verbose: true
+      gsub_file file, current, new, verbose: true
     end
 
     def copy_migration_files
