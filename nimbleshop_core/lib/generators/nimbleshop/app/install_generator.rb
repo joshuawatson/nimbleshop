@@ -24,8 +24,7 @@ module Nimbleshop
     end
 
     def delete_public_index_html
-      index_file = destination_path.join('public', 'index.html')
-      FileUtils.rm(index_file) if File.exists? index_file
+      remove_file "public/index.html"
     end
 
     def mount
