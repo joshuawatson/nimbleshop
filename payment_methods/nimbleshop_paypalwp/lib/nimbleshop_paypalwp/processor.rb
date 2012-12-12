@@ -71,7 +71,18 @@ module NimbleshopPaypalwp
     end
 
     def notify_acknowledge
-      result = Rails.env.test? ? true : notify.acknowledge
+      return true if Rails.env.test?
+
+      # we can mock inpn callback using rake nimbleshop_paypalwp:mock_ipn_callback .
+      # In this case a fixed txn_id is sent all the time and this value is used to determine
+      # that it is indeed a mocked ipn callback. Also for safety this rule is applied only
+      # in development mode
+      if Rails.env.development? && notify.transaction_id == '50L283347C020742B'
+        result = true
+      else
+        result = notify.acknowledge
+      end
+
       Rails.logger.debug "notify_acknowledge : #{result}"
       result
     end
