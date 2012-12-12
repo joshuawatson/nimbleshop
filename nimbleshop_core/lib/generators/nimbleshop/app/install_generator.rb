@@ -52,11 +52,46 @@ module Nimbleshop
     end
 
     def migrate_database!
-      puts 'copying migration files'
-      run 'bundle exec rake railties:install:migrations'
-      run 'bundle exec rake db:create db:migrate'
-      run 'bundle exec rake db:test:prepare'
+      copy_migration_files
+      execute_db_create
+      execute_db_migrate
+      execute_db_test_prepare
     end
+
+    def copy_migration_files
+      say_status :copying, "migration files"
+      silence_stream(STDOUT) do
+        silence_warnings { rake 'railties:install:migrations' }
+      end
+    end
+
+    def execute_db_test_prepare
+      say_status :running, "db:test:prepare"
+      silence_stream(STDOUT) do
+        silence_stream(STDERR) do
+          silence_warnings { rake 'db:test:prepare' }
+        end
+      end
+    end
+
+    def execute_db_create
+      say_status :running, "db:create"
+      silence_stream(STDOUT) do
+        silence_stream(STDERR) do
+          silence_warnings { rake 'db:create' }
+        end
+      end
+    end
+
+    def execute_db_migrate
+      say_status :running, "db:migrate"
+      silence_stream(STDOUT) do
+        silence_stream(STDERR) do
+          silence_warnings { rake 'db:migrate' }
+        end
+      end
+    end
+
 
     def bundle!
       run 'bundle install'
