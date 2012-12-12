@@ -17,4 +17,6 @@ Gem::Specification.new do |gem|
   gem.files = Dir['{app,config,db,lib}/**/*'] + ['README.md']
 
   gem.test_files = Dir['test/**/*']
+
+  gem.add_dependency 'devise'
 end

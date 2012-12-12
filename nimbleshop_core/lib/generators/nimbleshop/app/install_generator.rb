@@ -39,6 +39,7 @@ module Nimbleshop
       if (routes_file = destination_path.join('config', 'routes.rb')).file?
         mount = %Q{
           mount NimbleshopSimply::Engine,          at: '/', as: 'main_theme'
+          mount NimbleshopAuth::Engine,            at: '/nimbleshop_auth'
 
           mount NimbleshopAuthorizedotnet::Engine, at: '/nimbleshop_authorizedotnet'
           mount NimbleshopPaypalwp::Engine,        at: '/nimbleshop_paypalwp'
