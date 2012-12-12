@@ -10,12 +10,20 @@ module Nimbleshop
 
     def generate
       copy_files!
-      migrate_database!
+
       ensure_no_mass_protection
+
+      copy_migration_files
+      execute_db_create
+      execute_db_migrate
+      execute_db_test_prepare
+      populate_sample_data
+
       mount
       delete_public_index_html
       delete_test_dir
     end
+
 
     protected
 
@@ -48,13 +56,6 @@ module Nimbleshop
       current = 'config.active_record.whitelist_attributes = true'
       new = 'config.active_record.whitelist_attributes = false'
       gsub_file f, current, new, verbose: true
-    end
-
-    def migrate_database!
-      copy_migration_files
-      execute_db_create
-      execute_db_migrate
-      execute_db_test_prepare
     end
 
     def copy_migration_files
