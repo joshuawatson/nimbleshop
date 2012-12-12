@@ -17,10 +17,11 @@ end
 
 GEMFILE
 
-run 'bundle install'
+#run 'bundle install'
 
 generate 'nimbleshop:install'
 
-run 'bundle exec rake db:create'
-run 'bundle exec rake nimbleshop:setup:db'
-run 'bundle exec rake db:test:prepare'
+#run 'bundle install'
+#run 'bundle exec rake db:create'
+#run 'bundle exec rake nimbleshop:setup:db'
+#run 'bundle exec rake db:test:prepare'

@@ -91,6 +91,11 @@ module Nimbleshop
       end
     end
 
+    def populate_sample_data
+      say_status :create, "sample data"
+      silence_warnings { rake 'nimbleshop:setup:db' }
+    end
+
 
     def bundle!
       run 'bundle install'
