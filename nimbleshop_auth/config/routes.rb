@@ -8,6 +8,11 @@ Rails.application.routes.prepend do
     put "users" => "devise/registrations#update", as: "user_registration"
   end
 
+  devise_scope :user do
+    get '/login' => 'nimbleshop_auth/user_sessions#new', :as => :login
+    get '/signup' => 'nimbleshop_auth/user_registrations#new', :as => :signup
+  end
+
   scope "admin", module: :admin, as: :admin do
     resources :users
   end

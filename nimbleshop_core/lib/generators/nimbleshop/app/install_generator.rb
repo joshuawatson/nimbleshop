@@ -9,6 +9,7 @@ module Nimbleshop
     source_root Pathname.new(File.expand_path('../templates', __FILE__))
 
     def generate
+      bundle!
       copy_files!
 
       ensure_no_mass_protection
@@ -61,9 +62,7 @@ module Nimbleshop
 
     def copy_migration_files
       say_status :copying, "migration files"
-      silence_stream(STDOUT) do
-        silence_warnings { rake 'railties:install:migrations' }
-      end
+      silence_warnings { rake 'railties:install:migrations' }
     end
 
     def execute_db_test_prepare
@@ -86,11 +85,7 @@ module Nimbleshop
 
     def execute_db_migrate
       say_status :running, "db:migrate"
-      silence_stream(STDOUT) do
-        silence_stream(STDERR) do
           silence_warnings { rake 'db:migrate' }
-        end
-      end
     end
 
     def populate_sample_data

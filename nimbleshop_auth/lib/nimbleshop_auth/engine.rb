@@ -1,6 +1,8 @@
 module NimbleshopAuth
   class Engine < ::Rails::Engine
 
+    engine_name 'nimbleshop_auth'
+
     isolate_namespace NimbleshopAuth
 
     config.after_initialize do

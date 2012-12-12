@@ -1,6 +1,6 @@
 class CreateUser < ActiveRecord::Migration
   def change
-    change_table(:users) do |t|
+    create_table(:users) do |t|
       ## Database authenticatable
       t.string :encrypted_password, :null => false, :default => ""
 

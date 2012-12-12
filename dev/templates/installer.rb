@@ -2,10 +2,11 @@ path = Pathname.new(File.expand_path('../../../', __FILE__))
 
 append_file 'Gemfile', <<-GEMFILE
 
+gem 'nimbleshop_auth',            path: "#{path.join('nimbleshop_auth')}"
+
 gem 'nimbleshop_core',            path: "#{path.join('nimbleshop_core')}"
 gem 'nimbleshop_simply',          path: "#{path.join('themes', 'nimbleshop_simply')}"
 
-gem 'nimbleshop_auth',            path: "#{path.join('nimbleshop_auth')}"
 
 gem 'nimbleshop_authorizedotnet', path: "#{path.join('payment_methods', 'nimbleshop_authorizedotnet')}"
 gem 'nimbleshop_paypalwp',        path: "#{path.join('payment_methods', 'nimbleshop_paypalwp')}"
@@ -19,7 +20,7 @@ end
 
 GEMFILE
 
-#run 'bundle install'
+run 'bundle install'
 
 generate 'nimbleshop:install'
 
