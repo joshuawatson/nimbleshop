@@ -14,14 +14,24 @@ namespace :nimbleshop_paypalwp do
   task mock_ipn_callback: :environment do
 
     unless order_number = ENV['order_number']
-      puts 'Usage: rake ipn_callcak order_number=xxxxxxx'
-      abort
+     abort %Q{
+        You have not passed order_number. Please pass order_number like this.
+        Usage: rake ipn_callcak order_number=xxxxxxx
+      }
+    end
+
+    unless order = Order.find_by_number(order_number)
+     abort %Q{
+       No order was found matching order number #{order_number} . Please try again.
+      }
     end
 
     base_url = 'http://localhost:3000'
     endpoint = base_url + '/nimbleshop_paypalwp/paypalwp/notify'
 
-    amt =  (Order.find_by_number(order_number).total_amount_in_cents.to_i)/100.00
+    puts "ipn callback is being sent to #{endpoint}"
+
+    amt =  (order.total_amount_in_cents.to_i)/100.00
     params = {
        'invoice' => "#{order_number}",
        'mc_gross' => "#{amt}",
@@ -72,6 +82,8 @@ namespace :nimbleshop_paypalwp do
 
       uri = URI.parse(endpoint)
       response = Net::HTTP.post_form(uri, params)
+
+      puts response.inspect
 
   end
 end
