@@ -20,7 +20,7 @@ module Nimbleshop
       execute_db_test_prepare
       populate_sample_data
 
-      mount
+      mount_engines_for_routing
       delete_public_index_html
       delete_test_dir
     end
@@ -36,7 +36,7 @@ module Nimbleshop
       remove_file "public/index.html"
     end
 
-    def mount
+    def mount_engines_for_routing
       if (routes_file = destination_path.join('config', 'routes.rb')).file?
         mount = %Q{
           mount NimbleshopSimply::Engine,          at: '/', as: 'main_theme'
