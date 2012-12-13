@@ -19,7 +19,6 @@ module Nimbleshop
       execute_db_create
       execute_db_migrate
       execute_db_test_prepare
-      populate_sample_data
 
       mount_engines_for_routing
       delete_public_index_html
@@ -92,11 +91,6 @@ module Nimbleshop
           silence_warnings { rake 'db:migrate' }
         end
       end
-    end
-
-    def populate_sample_data
-      say_status :create, "sample data"
-      silence_warnings { rake 'nimbleshop:setup:db' }
     end
 
 
