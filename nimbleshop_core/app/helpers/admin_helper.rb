@@ -58,7 +58,6 @@ module AdminHelper
   end
 
   def gravatar_for(email, options = {})
-    email.strip!
     email ||= 'user@example.com'
     options = { alt: 'avatar', class: 'avatar', size: 50 }.merge! options
     id = Digest::MD5::hexdigest(email.strip.downcase)
