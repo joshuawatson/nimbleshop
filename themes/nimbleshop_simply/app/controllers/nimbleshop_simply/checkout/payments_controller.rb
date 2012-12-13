@@ -1,7 +1,7 @@
 module NimbleshopSimply
   class Checkout::PaymentsController < SimplyController
 
-    before_filter :verify_current_order
+    before_filter :verify_current_order, :set_show_shipping_billing_address, :set_contact_email
 
     force_ssl if: :ssl_configured?
 
@@ -15,6 +15,16 @@ module NimbleshopSimply
 
     def ssl_configured?
       PaymentMethod.all.find { |i| i.use_ssl? }
+    end
+
+    private
+
+    def set_show_shipping_billing_address
+      @show_shipping_billing_address = true
+    end
+
+    def set_contact_email
+      @show_contact_email = true
     end
 
   end

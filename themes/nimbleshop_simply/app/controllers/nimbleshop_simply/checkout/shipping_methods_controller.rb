@@ -1,7 +1,7 @@
 module NimbleshopSimply
   class Checkout::ShippingMethodsController < SimplyController
 
-    before_filter :verify_current_order, :load_shipping_methods
+    before_filter :verify_current_order, :load_shipping_methods, :set_show_shipping_billing_address, :set_contact_email
 
     def new
       render
@@ -19,6 +19,16 @@ module NimbleshopSimply
 
     def load_shipping_methods
       @shipping_methods = Array.wrap(current_order.available_shipping_methods)
+    end
+
+    private
+
+    def set_show_shipping_billing_address
+      @show_shipping_billing_address = true
+    end
+
+    def set_contact_email
+      @show_contact_email = true
     end
 
   end

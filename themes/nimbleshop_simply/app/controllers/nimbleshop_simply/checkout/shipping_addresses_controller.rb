@@ -1,7 +1,7 @@
 module NimbleshopSimply
   class Checkout::ShippingAddressesController < SimplyController
 
-    before_filter :verify_current_order
+    before_filter :verify_current_order, :unset_show_shipping_billing_address, :unset_contact_email
 
     def new
       current_order.initialize_addresses
@@ -25,6 +25,16 @@ module NimbleshopSimply
         current_order.initialize_addresses
         render action: :new
       end
+    end
+
+    private
+
+    def unset_show_shipping_billing_address
+      @show_shipping_billing_address = false
+    end
+
+    def unset_contact_email
+      @show_contact_email = false
     end
 
   end
