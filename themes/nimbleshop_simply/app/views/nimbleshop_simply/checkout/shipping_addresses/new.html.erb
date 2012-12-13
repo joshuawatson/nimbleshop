@@ -9,8 +9,12 @@
     <%= form_for(current_order, url: checkout_shipping_address_path, html: {class: 'form-horizontal'}) do |f| %>
       <%= render 'error',               f: f %>
       <%= render 'contact_information', f: f %>
-      <%= render 'shipping_address',    f: f, countries: @countries %>
-      <%= render 'billing_address',     f: f, countries: @countries %>
+
+      <% unless current_order.has_digital_goods? %>
+        <%= render 'shipping_address',    f: f, countries: @countries %>
+        <%= render 'billing_address',     f: f, countries: @countries %>
+      <% end %>
+
       <div class="form-actions">
         <%= f.submit 'Submit', class: 'btn btn-primary', 'data-loading-text' => 'processing ...' %>
       </div>
