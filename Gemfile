@@ -2,7 +2,8 @@ eval(File.read(Pathname.new(File.dirname(__FILE__)).join('dev', 'common_gemfile.
 
 gemspec
 
-gem 'nimbleshop_simply',           path: './themes/nimbleshop_simply'
+
+gem 'nimbleshop_simply',           path: './../nimbleshop_simply'
 
 gem 'nimbleshop_paypalwp',         path: './payment_methods/nimbleshop_paypalwp'
 gem 'nimbleshop_authorizedotnet',  path: './payment_methods/nimbleshop_authorizedotnet'
