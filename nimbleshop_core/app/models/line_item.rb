@@ -38,7 +38,7 @@ class LineItem < ActiveRecord::Base
     self.product_description = product.description
     self.product_price       = product.price
     self.product_permalink   = product.permalink
-    self.digital             = product.digital
+    self.product_digital     = product.digital
 
     if product.picture
       %w(tiny tiny_plus small small_plus medium medium_plus large large_plus).each do |size|

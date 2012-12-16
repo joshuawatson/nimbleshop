@@ -71,7 +71,7 @@ class Order < ActiveRecord::Base
   end
 
   def has_digital_goods?
-    line_items.find { |line_item| line_item.digital }
+    line_items.find { |line_item| line_item.product_digital }
   end
 
   def available_shipping_methods
