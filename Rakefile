@@ -4,7 +4,6 @@ end
 
 engines = %w(nimbleshop_core)
 payment_methods = %w(nimbleshop_authorizedotnet nimbleshop_splitable nimbleshop_paypalwp nimbleshop_stripe)
-themes = %w(nimbleshop_simply)
 
 desc 'Run all tests by default'
 task :default => %w(test)
@@ -20,10 +19,6 @@ task :default => %w(test)
 
     payment_methods.each do |engine|
       system(%(cd payment_methods/#{engine} && #{$0} #{task_name})) || errors << engine
-    end
-
-    themes.each do |engine|
-      system(%(cd themes/#{engine} && #{$0} #{task_name})) || errors << engine
     end
 
     fail("Errors in #{errors.join(', ')}") unless errors.empty?
