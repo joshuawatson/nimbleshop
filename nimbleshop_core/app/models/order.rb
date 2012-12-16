@@ -70,6 +70,10 @@ class Order < ActiveRecord::Base
     touch(:purchased_at) unless purchased_at
   end
 
+  def has_digital_goods?
+    line_items.find { |line_item| line_item.digital }
+  end
+
   def available_shipping_methods
     ShippingMethod.available_for(line_items_total, shipping_address)
   end
