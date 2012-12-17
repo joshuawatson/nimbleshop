@@ -1,12 +1,11 @@
 # Encoding: UTF-8
 
-$:.push File.expand_path('../nimbleshop_core/lib', __FILE__)
 require 'nimbleshop/version'
 version = Nimbleshop::Version.to_s
 rails_version = Nimbleshop::RailsVersion.to_s
 
 Gem::Specification.new do |gem|
-
+  gem.platform          = Gem::Platform::RUBY
   gem.name              = 'nimbleshop'
   gem.version           = version
   gem.authors           = ['Neeraj Singh', 'megpha']
@@ -17,14 +16,18 @@ Gem::Specification.new do |gem|
   gem.description       = 'nimbleShop is a free and open source e-commerce framework based on ruby on rails'
 
   gem.files = Dir['{lib}/**/*'] + ['README.md']
+  gem.require_path = 'lib'
+  gem.requirements << 'none'
+  gem.required_ruby_version     = '>= 1.9.2'
+  gem.required_rubygems_version = ">= 1.3.6"
 
   gem.add_dependency 'rails', rails_version
 
-  gem.add_dependency 'nimbleshop_core',            "= #{version}"
+  gem.add_dependency 'nimbleshop_core',            version
 
-  gem.add_dependency 'nimbleshop_authorizedotnet', "= #{version}"
-  gem.add_dependency 'nimbleshop_paypalwp',        "= #{version}"
-  gem.add_dependency 'nimbleshop_splitable',       "= #{version}"
-  gem.add_dependency 'nimbleshop_cod',             "= #{version}"
-  gem.add_dependency 'nimbleshop_stripe',          "= #{version}"
+  gem.add_dependency 'nimbleshop_authorizedotnet', version
+  gem.add_dependency 'nimbleshop_paypalwp',        version
+  gem.add_dependency 'nimbleshop_splitable',       version
+  gem.add_dependency 'nimbleshop_cod',             version
+  gem.add_dependency 'nimbleshop_stripe',          version
 end
