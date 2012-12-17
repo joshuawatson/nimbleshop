@@ -1,9 +1,7 @@
 # Encoding: UTF-8
 
-require 'nimbleshop/version'
-version = Nimbleshop::Version.to_s
 version = '0.0.17.beta'
-rails_version = Nimbleshop::RailsVersion.to_s
+rails_version = '3.2.9'
 
 Gem::Specification.new do |gem|
   gem.platform          = Gem::Platform::RUBY
