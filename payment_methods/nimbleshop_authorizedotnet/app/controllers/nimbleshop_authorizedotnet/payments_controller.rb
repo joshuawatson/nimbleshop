@@ -5,7 +5,7 @@ module NimbleshopAuthorizedotnet
     def create
       order             =  Order.find_by_id! session[:order_id]
 
-      address_attrs     = order.final_billing_address.to_credit_card_attributes
+      address_attrs     = order.final_billing_address.try(:to_credit_card_attributes) || {}
       creditcard_attrs  = creditcard_params.merge address_attrs
       creditcard        = Creditcard.new creditcard_attrs
 
