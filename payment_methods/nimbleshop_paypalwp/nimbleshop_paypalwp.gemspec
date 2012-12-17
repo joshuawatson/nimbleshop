@@ -3,6 +3,7 @@
 $:.push File.expand_path('../../../nimbleshop_core/lib', __FILE__)
 require 'nimbleshop/version'
 version = Nimbleshop::Version.to_s
+version = '0.0.17.beta'
 
 Gem::Specification.new do |gem|
 
