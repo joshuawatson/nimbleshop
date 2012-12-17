@@ -2,6 +2,7 @@
 
 require 'nimbleshop/version'
 version = Nimbleshop::Version.to_s
+version = '0.0.17.beta'
 rails_version = Nimbleshop::RailsVersion.to_s
 
 Gem::Specification.new do |gem|
