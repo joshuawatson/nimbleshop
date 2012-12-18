@@ -2,7 +2,12 @@ eval(File.read(Pathname.new(File.dirname(__FILE__)).join('dev', 'common_gemfile.
 
 gemspec
 
-gem 'nimbleshop_simply',           path: './../nimbleshop_simply'
+p =  Pathname.new(File.dirname(__FILE__)).join('..', 'nimbleshop_simply')
+if p.exist?
+  gem 'nimbleshop_simply',           path: './../nimbleshop_simply'
+else
+  gem 'nimbleshop_simply',           git: 'git://github.com/nimbleshop/nimbleshop_simply.git'
+end
 
 gem 'nimbleshop_paypalwp',         path: './nimbleshop_paypalwp'
 gem 'nimbleshop_authorizedotnet',  path: './nimbleshop_authorizedotnet'
