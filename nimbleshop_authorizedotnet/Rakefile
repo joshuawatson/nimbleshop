@@ -11,7 +11,7 @@ task :test => ['nimbleshop_authorizedotnet:ensure_test_app_exists', 'nimbleshop_
 namespace :nimbleshop_authorizedotnet do
 
   task :ensure_test_app_exists do
-    p = File.expand_path('../../../nimbleshop_core/test/myshop', __FILE__)
+    p = File.expand_path('../../nimbleshop_core/test/myshop', __FILE__)
     abort 'Test app is missing. First execute "rake nimbleshop:setup:test_app"' unless File.directory?(p)
   end
 
