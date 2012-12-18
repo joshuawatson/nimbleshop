@@ -1,8 +1,6 @@
 # Encoding: UTF-8
 
-$:.push File.expand_path('../../../nimbleshop_core/lib', __FILE__)
-require 'nimbleshop/version'
-version = Nimbleshop::Version.to_s
+version = File.read(File.expand_path("../../NIMBLESHOP_VERSION", __FILE__)).strip
 
 Gem::Specification.new do |gem|
 
