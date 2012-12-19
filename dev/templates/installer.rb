@@ -5,11 +5,11 @@ append_file 'Gemfile', <<-GEMFILE
 gem 'nimbleshop_core',            path: "#{path.join('nimbleshop_core')}"
 gem 'nimbleshop_simply',          path: "#{path.join('..', 'nimbleshop_simply')}"
 
-gem 'nimbleshop_authorizedotnet', path: "#{path.join('payment_methods', 'nimbleshop_authorizedotnet')}"
-gem 'nimbleshop_paypalwp',        path: "#{path.join('payment_methods', 'nimbleshop_paypalwp')}"
-gem 'nimbleshop_splitable',       path: "#{path.join('payment_methods', 'nimbleshop_splitable')}"
-gem 'nimbleshop_cod',             path: "#{path.join('payment_methods', 'nimbleshop_cod')}"
-gem 'nimbleshop_stripe',          path: "#{path.join('payment_methods', 'nimbleshop_stripe')}"
+gem 'nimbleshop_authorizedotnet', path: "#{path.join('nimbleshop_authorizedotnet')}"
+gem 'nimbleshop_paypalwp',        path: "#{path.join('nimbleshop_paypalwp')}"
+gem 'nimbleshop_splitable',       path: "#{path.join('nimbleshop_splitable')}"
+gem 'nimbleshop_cod',             path: "#{path.join('nimbleshop_cod')}"
+gem 'nimbleshop_stripe',          path: "#{path.join('nimbleshop_stripe')}"
 
 group :development, :test do
   gem 'debugger'

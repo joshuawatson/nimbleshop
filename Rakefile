@@ -18,7 +18,7 @@ task :default => %w(test)
     end
 
     payment_methods.each do |engine|
-      system(%(cd payment_methods/#{engine} && #{$0} #{task_name})) || errors << engine
+      system(%(cd #{engine} && #{$0} #{task_name})) || errors << engine
     end
 
     fail("Errors in #{errors.join(', ')}") unless errors.empty?

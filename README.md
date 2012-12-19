@@ -4,14 +4,8 @@
 
 [![Build Status](https://secure.travis-ci.org/nimbleshop/nimbleshop.png)](http://travis-ci.org/nimbleshop/nimbleshop)
 
-# Getting started
-
 Getting started is easy. Just [get started](http://nimbleshop.org/getting_started.html) .
 
-# Documentation
-
 Documentation is available at [http://nimbleshop.org/docs](http://nimbleshop.org/docs) .
-
-# License
 
 nimbleShop uses [MIT license](http://www.opensource.org/licenses/mit-license.php) .

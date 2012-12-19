@@ -2,11 +2,17 @@ eval(File.read(Pathname.new(File.dirname(__FILE__)).join('dev', 'common_gemfile.
 
 gemspec
 
+p =  Pathname.new(File.dirname(__FILE__)).join('..', 'nimbleshop_simply')
+if p.exist?
+  gem 'nimbleshop_simply',           path: './../nimbleshop_simply'
+else
+  gem 'nimbleshop_simply',           git: 'git://github.com/nimbleshop/nimbleshop_simply.git'
+end
 
-gem 'nimbleshop_simply',           path: './../nimbleshop_simply'
+gem 'nimbleshop_paypalwp',         path: './nimbleshop_paypalwp'
+gem 'nimbleshop_authorizedotnet',  path: './nimbleshop_authorizedotnet'
+gem 'nimbleshop_splitable',        path: './nimbleshop_splitable'
+gem 'nimbleshop_cod',              path: './nimbleshop_cod'
+gem 'nimbleshop_stripe',           path: './nimbleshop_stripe'
 
-gem 'nimbleshop_paypalwp',         path: './payment_methods/nimbleshop_paypalwp'
-gem 'nimbleshop_authorizedotnet',  path: './payment_methods/nimbleshop_authorizedotnet'
-gem 'nimbleshop_splitable',        path: './payment_methods/nimbleshop_splitable'
-gem 'nimbleshop_cod',              path: './payment_methods/nimbleshop_cod'
-gem 'nimbleshop_stripe',           path: './payment_methods/nimbleshop_stripe'
+gem 'railties'
