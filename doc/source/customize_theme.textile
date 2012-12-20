@@ -6,21 +6,24 @@ h3. Theme customization
 
 nimbleShop allows you to customize theme. Here is how you can do it.
 
-h4. Get the theme locally
+h4. Fork the theme
 
-First you need to get the +nimelshop_simply+ theme locally. Look into your +Gemfile.lock+ and search for +nimbleshop+ to find the version of nimbleshop you are working with.Let's assume that you are using +0.0.14+ .
+Visit "https://github.com/nimbleshop/nimbleshop_simply":https://github.com/nimbleshop/nimbleshop_simply and fork this repository.
+
+h4. Customize the forked version
+
 
 First clone the nimbleshop repository
 
 <shell>
-git clone git://github.com/nimbleshop/nimbleshop.git
-cd nimbleshop
+git clone git://github.com/nimbleshop/nimbleshop_simply.git
+cd nimbleshop_simply
 git tag -l
 </shell>
 
-+git tag -l+ should list the version you are working with.
++git tag -l+ should list the version you are working with. Lets assume that you are working with version +0.0.14+ of nimbleShop.
 
-Next let's checkout the version +0.0.14+ .
+Next let's checkout the version +0.0.14+ of nimbleshop_simply.
 
 <shell>
 git checkout v0.0.14
