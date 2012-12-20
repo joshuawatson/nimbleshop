@@ -12,10 +12,9 @@
 # rake nimbleshop:release_all
 #
 require 'rake'
-require File.expand_path('../../../nimbleshop_core/lib/nimbleshop/version', __FILE__)
 
-pkg_dir = File.expand_path('../../pkg', __FILE__)
-version = Nimbleshop::Version
+default_pkg_dir = File.expand_path('../../pkg', __FILE__)
+version = File.read(File.expand_path("../../../NIMBLESHOP_VERSION", __FILE__)).strip
 
 class Gemm
   attr_accessor :extension_name, :gem_filename, :gemspec, :pkg_dir, :version, :extension_dir
@@ -36,7 +35,7 @@ class Gemm
 
   def build
     cmd = ''
-    cmd << "cd #{extension_dir} && " if extension_name != 'nimbleshop'
+    cmd << "cd #{extension_dir.expand_path.to_s} && " if extension_name != 'nimbleshop'
     cmd << "gem build #{gemspec} && "
     cmd << "mv #{extension_name}-#{version}.gem #{pkg_dir}/"
     puts cmd
@@ -63,13 +62,13 @@ class Gemm
   end
 end
 
-engines = %w(core stripe authorizedotnet paypalwp splitable cod).map { |i| "nimbleshop_#{i}" }
+engines = %w(simply core stripe authorizedotnet paypalwp splitable cod).map { |i| "nimbleshop_#{i}" }
 all = engines + ['nimbleshop']
 
 main = ['nimbleshop_core', 'nimbleshop']
 main.each do |extension|
   namespace extension do
-    gem = Gemm.new(extension, pkg_dir, version, extension)
+    gem = Gemm.new(extension, default_pkg_dir, version, Pathname.new(extension))
     task :clean do
       gem.clean
     end
@@ -91,10 +90,10 @@ main.each do |extension|
 end
 
 
-themes = []
+themes = ['nimbleshop_simply']
 themes.each do |extension|
   namespace extension do
-    gem = Gemm.new(extension, pkg_dir, version, "themes/#{extension}")
+    gem = Gemm.new(extension, default_pkg_dir, version, Pathname.new(extension).join('..', '..', 'nimbleshop_simply'))
     task :clean do
       gem.clean
     end
@@ -118,7 +117,7 @@ end
 payment_methods = ['nimbleshop_stripe', 'nimbleshop_authorizedotnet', 'nimbleshop_paypalwp', 'nimbleshop_cod', 'nimbleshop_splitable']
 payment_methods.each do |extension|
   namespace extension do
-    gem = Gemm.new(extension, pkg_dir, version, "#{extension}")
+    gem = Gemm.new(extension, default_pkg_dir, version, Pathname.new(extension))
     task :clean do
       gem.clean
     end
