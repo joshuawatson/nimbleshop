@@ -2,14 +2,14 @@ h2. Setting up development environment
 
 endprologue.
 
-nimbleShop github repo has a lot of directories. This guide helps you understand which directory is for what purpose.
+h3. Create a directory called nimbleshop_org
 
-h3. Rake task to create myshop
-
-Follow the commands given below to setup a new Rails application called `myshop`.
 
 <shell>
+mkdir nimbleshop_org
+cd nimbleshop_org
 git clone git://github.com/nimbleshop/nimbleshop.git
+git clone git://github.com/nimbleshop/nimbleshop_simply.git
 cd nimbleshop
 rake nimbleshop:setup:local
 </shell>
