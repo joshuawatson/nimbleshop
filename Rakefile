@@ -1,4 +1,4 @@
-Dir[File.expand_path('../dev/tasks/**/*', __FILE__)].each do |task|
+Dir[ File.expand_path('dev/tasks/**/*',File.dirname(__FILE__)) ].each do |task|
   load task
 end
 

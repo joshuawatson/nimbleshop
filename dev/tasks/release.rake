@@ -3,7 +3,9 @@
 # Here is the order in which it should be executed.
 #
 #
-# Change the version number in version.rb file .
+# Change the version number in NIMBLESHOP_VERSION file.
+# Change the version number in nimbleshop_simply.gemspec file under nimbleshop_simply repo.
+#
 # rake nimbleshop:package_all
 # rake nimbleshop:bundle_all
 # git commit any changes to Gemfile and Gemfile.lock
@@ -61,7 +63,7 @@ class Gemm
   end
 end
 
-engines = %w(core simply stripe authorizedotnet paypalwp splitable cod).map { |i| "nimbleshop_#{i}" }
+engines = %w(core stripe authorizedotnet paypalwp splitable cod).map { |i| "nimbleshop_#{i}" }
 all = engines + ['nimbleshop']
 
 main = ['nimbleshop_core', 'nimbleshop']
@@ -89,7 +91,7 @@ main.each do |extension|
 end
 
 
-themes = ['nimbleshop_simply']
+themes = []
 themes.each do |extension|
   namespace extension do
     gem = Gemm.new(extension, pkg_dir, version, "themes/#{extension}")
@@ -116,7 +118,7 @@ end
 payment_methods = ['nimbleshop_stripe', 'nimbleshop_authorizedotnet', 'nimbleshop_paypalwp', 'nimbleshop_cod', 'nimbleshop_splitable']
 payment_methods.each do |extension|
   namespace extension do
-    gem = Gemm.new(extension, pkg_dir, version, "payment_methods/#{extension}")
+    gem = Gemm.new(extension, pkg_dir, version, "#{extension}")
     task :clean do
       gem.clean
     end
