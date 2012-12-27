@@ -86,6 +86,17 @@ main.each do |extension|
     end
     task :package => [:clean, :build, :install]
     task :release => [:package, :release_gem]
+
+    if extension == 'nimbleshop_core'
+      desc 'Tag the release'
+      task :tag_the_release do
+        cmd = "git tag -a v#{version} -m 'version  #{version} '"
+        sh cmd
+        cmd = "git push --tags"
+        sh cmd
+      end
+    end
+
   end
 end
 
@@ -93,7 +104,8 @@ end
 themes = ['nimbleshop_simply']
 themes.each do |extension|
   namespace extension do
-    gem = Gemm.new(extension, default_pkg_dir, version, Pathname.new(extension).join('..', '..', 'nimbleshop_simply'))
+    path = Pathname.new(extension).join('..', '..', 'nimbleshop_simply')
+    gem = Gemm.new(extension, default_pkg_dir, version, path)
     task :clean do
       gem.clean
     end
@@ -111,6 +123,16 @@ themes.each do |extension|
     end
     task :package => [:clean, :build, :install]
     task :release => [:package, :release_gem]
+
+    task :tag_the_release do
+      Dir.chdir(path) do
+        cmd = "git tag -a v#{version} -m 'version  #{version} '"
+        sh cmd
+        cmd = "git push --tags"
+        sh cmd
+      end
+    end
+
   end
 end
 
@@ -151,11 +173,5 @@ namespace :nimbleshop do
   task release_all: (all.map { |e| "#{e}:release" } << "nimbleshop:tag_the_release")
 
   desc 'Tag the release'
-  task :tag_the_release do
-    cmd = "git tag -a v#{version} -m 'version  #{version} '"
-    sh cmd
-    cmd = "git push --tags"
-    sh cmd
-  end
-
+  task tag_the_release: ["nimbleshop_core:tag_the_release", "nimbleshop_simply:tag_the_release"]
 end
