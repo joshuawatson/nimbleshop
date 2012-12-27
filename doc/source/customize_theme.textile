@@ -29,52 +29,29 @@ Next let's checkout the version +0.0.14+ of nimbleshop_simply.
 git checkout v0.0.14
 </shell>
 
-After the above command you will be in +no branch+ . That's ok.
-
-Now we need to copy nimbleshop directory to main rails project. However before copying delete the .git directory of nimbleshop. And then copy using the commands given below.
-
-Note that in the below command my rails application is named +myshop+ and it resides at +/Users/nsingh/dev/projects/+ . In your case the directory will be different.
+After the above command you will be in +no branch+ . That's ok. Now create a branch called +custom_theme+.
 
 <shell>
-rm -rf .git
-cd ..
-cp -rv nimbleshop /Users/nsingh/dev/projects/myshop
+git checkout -b custom_theme
 </shell>
 
-After copying nimbleshop your main rails application might look like this.
+Now push this branch to github.
 
 <shell>
--rw-r--r--   1 nsingh  staff   916 Dec  5 23:06 Gemfile
--rw-r--r--   1 nsingh  staff  5655 Dec  5 23:06 Gemfile.lock
--rw-r--r--   1 nsingh  staff  9208 Dec  5 23:00 README.rdoc
--rw-r--r--   1 nsingh  staff   271 Dec  5 23:00 Rakefile
-drwxr-xr-x   8 nsingh  staff   272 Dec  5 23:00 app
-drwxr-xr-x  11 nsingh  staff   374 Dec  5 23:01 config
--rw-r--r--   1 nsingh  staff   156 Dec  5 23:00 config.ru
-drwxr-xr-x   7 nsingh  staff   238 Dec  5 23:05 db
-drwxr-xr-x   3 nsingh  staff   102 Dec  5 23:00 doc
-drwxr-xr-x   4 nsingh  staff   136 Dec  5 23:00 lib
-drwxr-xr-x   4 nsingh  staff   136 Dec  5 23:01 log
-drwxr-xr-x  17 nsingh  staff   578 Dec  6 09:42 nimbleshop
-drwxr-xr-x   8 nsingh  staff   272 Dec  5 23:03 public
-drwxr-xr-x   3 nsingh  staff   102 Dec  5 23:00 script
-drwxr-xr-x   6 nsingh  staff   204 Dec  5 23:05 tmp
-drwxr-xr-x   4 nsingh  staff   136 Dec  5 23:00 vendor
+git push
 </shell>
 
-Notice that there is nimbleshop directory in between. That is where the nimbleshop code was copied from earlier step.
+h4. Configuring app to use custom_branch .
 
-h4. Configuring app to use local nimbleshop theme.
-
-Open the +Gemfile+ of your app and add +path+ option to gem +nimbleshop_simply+ .
+Open the +Gemfile+ of your app and change the gem +nimbleshop_simply+ option to have github and branch option.
 
 <shell>
-gem 'nimbleshop_simply', path: './nimbleshop/themes/nimbleshop_simply'
+gem 'nimbleshop_simply', github: 'nimbleshop/nimbleshop_simply', branch: :custom_theme
 </shell>
 
 h4. Customizing theme
 
-Now open file +myshop/nimbleshop/themes/nimbleshop_simply/app/assets/stylesheets/nimbleshop_simply/custom.css.scss+ . Go to the bottom of the page and add following lines.
+Now open file +~/nimbleshop_simply/app/assets/stylesheets/nimbleshop_simply/custom.css.scss+ . Go to the bottom of the page and add following lines.
 
 <shell>
 body {
@@ -85,7 +62,3 @@ body {
 h4. Start your rails server
 
 Now start your rails server by running command +rails server+ and visit +http:localhost:3000+ . If you see green background then it means your customization is working .
-
-h4. Customization is only for the theme
-
-Even though you have the full nimbleShop folder in your +myshop+ rails application, any changes made to outside of +nimbleshop_simply+ will not be taken into account.
