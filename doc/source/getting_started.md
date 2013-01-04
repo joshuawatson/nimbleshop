@@ -1,7 +1,5 @@
 ## Build an online shop using nimbleShop ##
 
-endprologue.
-
 Please follow this documentation if you are using _nimbleShop_. If you are developing _nimbleshop_ , the framework itself, then follow [setting up development environment][1].
 
 ### nimbleShop only supports ruby 1.9.2+ ###

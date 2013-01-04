@@ -1,7 +1,5 @@
 ##	Tools	##
 
-endprologue.
-
 ###	Google analytics	###
 
 nimbleShop has built in support for google analytics.

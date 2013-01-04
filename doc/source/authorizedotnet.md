@@ -1,7 +1,5 @@
 ## Authorize.net ##
 
-endprologue.
-
 [Authorize.net][1] is a payment gateway service provider allowing merchants to accept credit card and electronic checks payments. [Authorize.net][1] claims a user base of over 305,000 merchants, which would make them the Internet's largest payment gateway service provider.
 
 ### Sandbox account ###

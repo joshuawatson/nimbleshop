@@ -1,7 +1,5 @@
 ##	Setting up development environment ##
 
-endprologue.
-
 ###	Create a directory called nimbleshop_org ###
 
 ```shell

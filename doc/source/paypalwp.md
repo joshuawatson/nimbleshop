@@ -1,7 +1,5 @@
 ## Paypal website payments standard ##
 
-endprologue.
-
 Paypal offers a lot of products. nimbleShop has built-in support for [Paypal website payments standard] [1]. Paypal website payments standard has following attractive features:
 
 * Buyer can pay using their Paypal account or they can pay using their credit card.

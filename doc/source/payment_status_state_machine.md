@@ -1,7 +1,5 @@
 ## Payment status machine ##
 
-endprologe.
-
 ### nimbleShop uses state machine to manage payment status ###
 
 nimbleShop uses [state machine][1] to manage payment status. The readme of this project is very extensive so read it to better understand what "state machine" does.

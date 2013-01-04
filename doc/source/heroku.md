@@ -1,7 +1,5 @@
 ##	Heroku ##
 
-endprologue.
-
 ###	Deploying the application on Heroku ###
 
 Follow the instructions given below to deploy the application on Heroku.

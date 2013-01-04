@@ -1,7 +1,5 @@
 ## Releasing nimbleShop gem ##
 
-endprologue.
-
 ###	New version ###
 
 Change the rails version in `bin/nimbleshop`.

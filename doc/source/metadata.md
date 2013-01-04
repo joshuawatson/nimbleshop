@@ -1,7 +1,5 @@
 ## Storing arbitrary data in metadata column ##
 
-endprologue.
-
 ### metadata column ###
 
 All the tables in nimbleShop have a column called <ins>metadata</ins>. This column can be used to store any arbitrary data.

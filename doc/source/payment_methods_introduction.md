@@ -1,7 +1,5 @@
 ## Payment methods ##
 
-endprologue.
-
 ### Support for payment methods ###
 
 nimbleShop out of the box supports the following payment methods:

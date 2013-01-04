@@ -1,7 +1,5 @@
 ## Extensions ##
 
-endprologue.
-
 ### What is extension ###
 
 ### How to create a new extension ###

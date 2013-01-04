@@ -1,7 +1,5 @@
 ## Running tests ##
 
-endprologue.
-
 ### Running tests ###
 
 nimbleShop uses testing framework provided by Ruby on Rails. If you are not familiar with testing philosophy of Rails then you should read [this excellent guide][1].

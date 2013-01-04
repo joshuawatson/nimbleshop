@@ -1,7 +1,5 @@
 ##	Sending email ##
 
-endprologue.
-
 ### Notification to buyer and seller ###
 
 When a buyer buys an item then buyer is sent an email detailing the purchase details. Seller is also notified that purchase has been made.

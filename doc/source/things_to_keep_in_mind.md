@@ -1,7 +1,5 @@
 ## Contributing to nimbleShop ##
 
-endprologue.
-
 ### Contributing to Documentation ###
 
 Documentation for nimbleShop is under <ins>doc</ins> directory in the Github repo. Follow [the README][1] to build the documentation.

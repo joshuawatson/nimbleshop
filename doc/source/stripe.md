@@ -1,7 +1,5 @@
 ## Stripe ##
 
-endprologue.
-
 [Stripe][1] is a payment gateway and processing service provider allowing merchants to accept credit cards.
 
 ### Test account ###
