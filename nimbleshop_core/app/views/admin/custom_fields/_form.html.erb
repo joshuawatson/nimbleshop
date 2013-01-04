@@ -24,9 +24,9 @@
         <%= f.label :field_type, class: 'control-label' %>
         <div class="controls">
           <% if @custom_field.new_record? %>
-            <%= f.text_field :field_type, class: 'input-xlarge' %>
+            <%= f.select :field_type, [['','empty'],['Text','text'],['Number','number'],['Date','date']] %>
             <p class="help-block">
-              Valid values are text, number or date .
+              Valid values are text, number or date.
             </p>
           <% else %>
             <%= f.text_field :field_type, class: 'input-xlarge disabled', disabled: 'disabled' %>
