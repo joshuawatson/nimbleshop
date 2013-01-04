@@ -129,9 +129,9 @@ module NimbleshopGuides
 
       def generate_title
         if heading = Nokogiri::HTML(@header).at(:h2)
-          @title = "Ruby on Rails Guides: #{heading.text}".html_safe
+          @title = "nimbleShop docs: #{heading.text}".html_safe
         else
-          @title = "Ruby on Rails Guides"
+          @title = "nimbleShop docs"
         end
       end
 
