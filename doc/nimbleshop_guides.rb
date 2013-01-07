@@ -21,14 +21,14 @@ rescue LoadError
 end
 
 begin
-  require 'redcloth'
+  require 'redcarpet'
 rescue Gem::LoadError
   # This can happen if doc:guides is executed in an application.
-  $stderr.puts('Generating guides requires RedCloth 4.1.1+.')
+  $stderr.puts('Generating guides requires Redcarpet 2.2.2+.')
   $stderr.puts(<<ERROR) if bundler?
 Please add
 
-  gem 'RedCloth', '~> 4.2'
+  gem 'redcarpet', '~> 2.2.2'
 
 to the Gemfile, run
 
@@ -40,8 +40,6 @@ ERROR
   exit 1
 end
 
-require "nimbleshop_guides/textile_extensions"
-RedCloth.send(:include, NimbleshopGuides::TextileExtensions)
-
+require 'nimbleshop_guides/markdown'
 require "nimbleshop_guides/generator"
 NimbleshopGuides::Generator.new.generate

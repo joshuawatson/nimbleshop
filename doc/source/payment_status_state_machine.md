@@ -1,51 +1,51 @@
-h2. Payment status state machine
+## Payment status machine ##
 
-endprologue.
+### nimbleShop uses state machine to manage payment status ###
 
-h3. nimbleShop uses state machine to manage payment status
+nimbleShop uses [state machine][1] to manage payment status. The readme of this project is very extensive so read it to better understand what "state machine" does.
 
-nimbleShop uses "state machine":https://github.com/pluginaweek/state_machine to manage payment status. The readme of this project is very extensive so read it to better understand what "state machine" does.
+### State machine in nimbleShop ###
 
-h3. State machine in nimbleShop
+nimbleShop has following code in `order.rb`.
 
-nimbleShop has following code in <tt>order.rb</tt> .
+```shell
+state_machine :payment_status, initial: :abandoned do
+	
+	event(:authorize)	{ transition abondoned: :authorized	}
+	event(:pending)		{ transition abondoned: :pending	}
+	event(:kapture)		{ transition abondoned: :purchased	}
+	event(:refund)		{ transition abondoned: :refunded	}
+		
+	event(:purchase)	{ transition [:abondoned,	:pending] =>	:purchased	}
+	event(:void)		{ transition [:authorized,	:pending] =>	:voided	}
+		
+	state all - [ :abonded ] do 
+		validates :payment_method, presence: true
+	end
+end
+```
 
-<shell>
-  state_machine :payment_status, initial: :abandoned do
-
-    event(:authorize) { transition abandoned:   :authorized }
-    event(:pending)   { transition abandoned:   :pending    }
-    event(:kapture )  { transition authorized:  :purchased  }
-    event(:refund)    { transition purchased:   :refunded   }
-
-    event(:purchase)  { transition [:abandoned,  :pending] =>  :purchased  }
-    event(:void)      { transition [:authorized, :pending] =>  :voided     }
-
-    state all - [ :abandoned ] do
-      validates :payment_method, presence: true
-    end
-  end
-</shell>
-
-h3. Payment status related activities
+### Payment status related activities ###
 
 Let's say that we have an order instance. You can inquire that order about the payment status in two different ways.
 
-<shell>
 
-# Inquring about current payment status
+* Inquiring about current payment status
+
+```shell
 > order.payment_status
- => "abandoned"
+=> "abandoned"
 
-> order.payment_status_name
- => :abandoned
+> order.payment_status_name 
+=> :abandoned
 
-> order.human_payment_status_name
- => "abandoned"
+> order.human_payment-status_name
+=> "abandoned"
+```
 
+* First way of inquiring if order belongs to a given state
 
-# First way of inquiring if order belongs to a given state
-
+```shell
 > order.purchased?
 => false
 
@@ -54,70 +54,73 @@ Let's say that we have an order instance. You can inquire that order about the p
 
 > order.abandoned?
 => true
+```
 
-# Second way of inquiring if order belongs to a given state
+* Second way of inquiring if order belongs to a given state
 
+```shell
 > order.payment_status?(:abandoned)
 => true
 
 > order.payment_status?(:purchased)
 => false
-</shell>
+```
 
+We can ask the `order` to what all other states it can go by individually asking for a given event name.
 
-We can ask the <tt>order</tt> to what all other states it can go by individually asking for a given event name.
-
-<shell>
-> order.can_purchase?
+```shell
+order.can_purchase?
 => true
 
 > order.can_void?
 => false
-</shell>
+```
 
-Or we can ask <tt>order</tt> what all possible events that it can act upon in its current state.
+Or we can ask `order` what all possible events that it can act upon in its current state.
 
-<shell>
+```shell
 > order.payment_status_events
-=> [:authorize, :pending, :purchase]
+=> [:authorize, :pending. :purchase]
+```
+* After being acted on events listed above the order can go into the following state
 
-# After being acted on events listed above the order can go into following state
+```shell
 > order.payment_status_paths.to_states
-=> [:authorized, :purchased, :refunded, :voided, :pending]
+=> [:authorized, :purchase, :refunded, :voided, :pending]
 
 
 > order.payment_status_paths
 => [[#<StateMachine::Transition attribute=:payment_status event=:authorize from="abandoned" from_name=:abandoned to="authorized" to_name=:authorized>, #<StateMachine::Transition attribute=:payment_status event=:kapture from="authorized" from_name=:authorized to="purchased" to_name=:purchased>, #<StateMachine::Transition attribute=:payment_status event=:refund from="purchased" from_name=:purchased to="refunded" to_name=:refunded>], [#<StateMachine::Transition attribute=:payment_status event=:authorize from="abandoned" from_name=:abandoned to="authorized" to_name=:authorized>, #<StateMachine::Transition attribute=:payment_status event=:void from="authorized" from_name=:authorized to="voided" to_name=:voided>], [#<StateMachine::Transition attribute=:payment_status event=:pending from="abandoned" from_name=:abandoned to="pending" to_name=:pending>, #<StateMachine::Transition attribute=:payment_status event=:purchase from="pending" from_name=:pending to="purchased" to_name=:purchased>, #<StateMachine::Transition attribute=:payment_status event=:refund from="purchased" from_name=:purchased to="refunded" to_name=:refunded>], [#<StateMachine::Transition attribute=:payment_status event=:pending from="abandoned" from_name=:abandoned to="pending" to_name=:pending>, #<StateMachine::Transition attribute=:payment_status event=:void from="pending" from_name=:pending to="voided" to_name=:voided>], [#<StateMachine::Transition attribute=:payment_status event=:purchase from="abandoned" from_name=:abandoned to="purchased" to_name=:purchased>, #<StateMachine::Transition attribute=:payment_status event=:refund from="purchased" from_name=:purchased to="refunded" to_name=:refunded>]]
 
-</shell>
+```
 
-h3. Transitioning to a different state
+### Transitioning to a different state ###
 
-If  the transtion to a different state fails then the method returns <tt>false</tt> .
+If  the transtion to a different state fails then the method returns `false`.
 
-<shell>
+```shell
 > order.void
 => false
 
 > order.authorize
 => false
-</shell>
+```
 
 The bang version raises an exception.
 
-<shell>
+```shell
 > order.void!
 StateMachine::InvalidTransition: Cannot transition payment_status via :void from :abandoned (Reason(s): Payment status cannot transition via "void")
 
 > order.authorize!
 StateMachine::InvalidTransition: Cannot transition payment_status via :authorize from :purchased (Reason(s): Payment status cannot transition via "authorize")
-</shell>
+```
 
-h3. Before and after transition callback
+### Before and after transition callback ###
 
-state manchie also provides before and after transitions callbacks as shown below.
+state machine also provides before and after transitions callbacks as shown below.
 
-<shell>
+```ruby
 before_purchase(order, transition)
 before_authorize(order, transition)
 before_void(order, transition)
@@ -125,4 +128,5 @@ before_void(order, transition)
 after_purchase(order, transition)
 after_authorize(order, transition)
 after_void(order, transition)
-</shell>
+```
+[1]: https://github.com/pluginaweek/state_machine
