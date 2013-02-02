@@ -27,7 +27,7 @@ gem update heroku
 
 Open Gemfile of your application and add following lines.
 
-```ruby
+```
 group :production, :staging do
   gem 'pg'
   gem 'thin'
